@@ -1,0 +1,216 @@
+{
+  "pending_approvals": [
+    {
+      "id": "APP-2026-001",
+      "circular_id": "CIRC-2026-002",
+      "title": "Automated Spectral Photometers & Bio-Analyzers",
+      "department": "Chemistry & Biochemistry",
+      "initiator": "Dr. Sarah Ahmed",
+      "requested_amount": 145000.0,
+      "current_stage": "Dean",
+      "required_role": "approver_dean",
+      "submitted_date": "2026-03-02",
+      "status": "PENDING_DEAN",
+      "summary": "Tender evaluated by department committee. Recommending award to BioMed Systems ($139,500). Within allocated capital research budget.",
+      "attachments": ["Committee_Eval_Minutes.pdf", "Dean_Approval_Summary.pdf"],
+      "previous_remarks": [
+        {
+          "role": "Department Head",
+          "name": "Prof. Tariq Rahman",
+          "action": "APPROVED",
+          "date": "2026-03-03 11:30 AM",
+          "comment": "Recommended with urgency. Necessary for pending PhD chemical synthesis projects."
+        }
+      ]
+    },
+    {
+      "id": "APP-2026-002",
+      "circular_id": "CIRC-2026-005",
+      "title": "Heavy Duty Mechanical Lathes & CNC Milling Equipment",
+      "department": "Mechanical Engineering",
+      "initiator": "Dr. Sarah Ahmed",
+      "requested_amount": 280000.0,
+      "current_stage": "Registrar",
+      "required_role": "approver_registrar",
+      "submitted_date": "2026-02-28",
+      "status": "PENDING_REGISTRAR",
+      "summary": "Large capital procurement exceeding $200k. Approved by Dept Head and Faculty Dean. Awaiting Registrar confirmation for syndicate placement.",
+      "attachments": ["Technical_Specs_Signoff.pdf", "Dean_Endorsement.pdf"],
+      "previous_remarks": [
+        {
+          "role": "Department Head",
+          "name": "Prof. Tariq Rahman",
+          "action": "APPROVED",
+          "date": "2026-02-26 09:15 AM",
+          "comment": "Fully endorsed. Lab renovation is underway."
+        },
+        {
+          "role": "Dean",
+          "name": "Prof. Kamal Hossain",
+          "action": "APPROVED",
+          "date": "2026-02-28 03:45 PM",
+          "comment": "Sanctioned under the Engineering Modernization Grant 2026."
+        }
+      ]
+    },
+    {
+      "id": "APP-2026-003",
+      "circular_id": "CIRC-2026-006",
+      "title": "Student Medical Center Diagnostic Ultrasound Machine",
+      "department": "University Medical Center",
+      "initiator": "Dr. Sarah Ahmed",
+      "requested_amount": 48000.0,
+      "current_stage": "Department Head",
+      "required_role": "approver_dept_head",
+      "submitted_date": "2026-03-01",
+      "status": "PENDING_DEPT_HEAD",
+      "summary": "Replacement of obsolete 12-year-old clinic scanner. Fast-track emergency health procurement request.",
+      "attachments": ["Medical_Equipment_Requisition.pdf"],
+      "previous_remarks": []
+    }
+  ],
+  "approval_history": [
+    {
+      "id": "HIST-2026-091",
+      "circular_id": "CIRC-2026-001",
+      "title": "High-Performance Computing Cluster for AI Lab",
+      "approver_name": "Dr. Fatima Noor",
+      "approver_role": "Registrar",
+      "action": "APPROVED",
+      "date": "2026-02-22 04:15 PM",
+      "amount": 82500.0,
+      "comment": "Final administrative and financial clearance granted. Work order issued to Apex Technologies Ltd."
+    },
+    {
+      "id": "HIST-2026-084",
+      "circular_id": "CIRC-2026-001",
+      "title": "High-Performance Computing Cluster for AI Lab",
+      "approver_name": "Prof. Kamal Hossain",
+      "approver_role": "Dean",
+      "action": "APPROVED",
+      "date": "2026-02-20 02:00 PM",
+      "amount": 82500.0,
+      "comment": "Evaluated scores reviewed. Vendor choice justified."
+    },
+    {
+      "id": "HIST-2026-079",
+      "circular_id": "CIRC-2026-001",
+      "title": "High-Performance Computing Cluster for AI Lab",
+      "approver_name": "Prof. Tariq Rahman",
+      "approver_role": "Department Head",
+      "action": "APPROVED",
+      "date": "2026-02-19 10:30 AM",
+      "amount": 82500.0,
+      "comment": "Approved technical committee findings. Forwarded to Dean."
+    },
+    {
+      "id": "HIST-2026-065",
+      "circular_id": "CIRC-2026-008",
+      "title": "Classroom Interactive Smartboards & Projectors (Phase 2)",
+      "approver_name": "Prof. Kamal Hossain",
+      "approver_role": "Dean",
+      "action": "APPROVED",
+      "date": "2026-02-15 11:00 AM",
+      "amount": 110000.0,
+      "comment": "Classroom upgrades approved for term 1 rollout."
+    }
+  ],
+  "trackers": {
+    "CIRC-2026-001": {
+      "circular_id": "CIRC-2026-001",
+      "title": "High-Performance Computing Cluster for AI Lab",
+      "total_amount": 82500.0,
+      "current_step_index": 4,
+      "steps": [
+        {
+          "title": "Initiation & Draft",
+          "role": "Initiator",
+          "assigned_to": "Dr. Sarah Ahmed",
+          "status": "COMPLETED",
+          "date": "2026-01-15",
+          "note": "Requisition drafted with technical specifications."
+        },
+        {
+          "title": "Department Head Review",
+          "role": "Department Head",
+          "assigned_to": "Prof. Tariq Rahman",
+          "status": "COMPLETED",
+          "date": "2026-01-18",
+          "note": "Approved department requirement and budget check."
+        },
+        {
+          "title": "Tendering & Evaluation",
+          "role": "Tender Committee",
+          "assigned_to": "Evaluation Committee",
+          "status": "COMPLETED",
+          "date": "2026-02-18",
+          "note": "4 bids received. Apex Technologies evaluated Rank 1."
+        },
+        {
+          "title": "Dean Approval",
+          "role": "Dean",
+          "assigned_to": "Prof. Kamal Hossain",
+          "status": "COMPLETED",
+          "date": "2026-02-20",
+          "note": "Endorsed evaluation matrix and award recommendation."
+        },
+        {
+          "title": "Registrar Sanction & Award",
+          "role": "Registrar",
+          "assigned_to": "Dr. Fatima Noor",
+          "status": "COMPLETED",
+          "date": "2026-02-22",
+          "note": "Formal award notice and contract signed."
+        }
+      ]
+    },
+    "CIRC-2026-002": {
+      "circular_id": "CIRC-2026-002",
+      "title": "Automated Spectral Photometers & Bio-Analyzers",
+      "total_amount": 145000.0,
+      "current_step_index": 3,
+      "steps": [
+        {
+          "title": "Initiation & Draft",
+          "role": "Initiator",
+          "assigned_to": "Dr. Sarah Ahmed",
+          "status": "COMPLETED",
+          "date": "2026-02-01",
+          "note": "Requisition approved by laboratory research council."
+        },
+        {
+          "title": "Department Head Review",
+          "role": "Department Head",
+          "assigned_to": "Prof. Tariq Rahman",
+          "status": "COMPLETED",
+          "date": "2026-03-03",
+          "note": "Endorsed with priority."
+        },
+        {
+          "title": "Dean Approval",
+          "role": "Dean",
+          "assigned_to": "Prof. Kamal Hossain",
+          "status": "IN_PROGRESS",
+          "date": "2026-03-05",
+          "note": "Under active review in Dean's office."
+        },
+        {
+          "title": "Registrar Sanction",
+          "role": "Registrar",
+          "assigned_to": "Dr. Fatima Noor",
+          "status": "PENDING",
+          "date": null,
+          "note": "Awaiting previous tier approval."
+        },
+        {
+          "title": "Work Order Issuance",
+          "role": "Procurement Office",
+          "assigned_to": "Procurement Division",
+          "status": "PENDING",
+          "date": null,
+          "note": "Final contract execution."
+        }
+      ]
+    }
+  }
+}

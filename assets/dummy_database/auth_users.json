@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Dr. Arthur Vance",
+      "email": "admin@university.edu",
+      "password": "password123",
+      "role": "admin",
+      "department": "Central Administration",
+      "status": "ACTIVE",
+      "token": "mock-jwt-admin-token"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Sarah Ahmed",
+      "email": "initiator@university.edu",
+      "password": "password123",
+      "role": "initiator",
+      "department": "Computer Science & Engineering",
+      "status": "ACTIVE",
+      "token": "mock-jwt-initiator-token"
+    },
+    {
+      "id": 3,
+      "name": "Prof. Tariq Rahman",
+      "email": "depthead@university.edu",
+      "password": "password123",
+      "role": "approver_dept_head",
+      "department": "Computer Science & Engineering",
+      "status": "ACTIVE",
+      "token": "mock-jwt-depthead-token"
+    },
+    {
+      "id": 4,
+      "name": "Prof. Kamal Hossain",
+      "email": "dean@university.edu",
+      "password": "password123",
+      "role": "approver_dean",
+      "department": "Faculty of Engineering",
+      "status": "ACTIVE",
+      "token": "mock-jwt-dean-token"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Fatima Noor",
+      "email": "registrar@university.edu",
+      "password": "password123",
+      "role": "approver_registrar",
+      "department": "Office of the Registrar",
+      "status": "ACTIVE",
+      "token": "mock-jwt-registrar-token"
+    },
+    {
+      "id": 6,
+      "name": "Apex Technologies Ltd",
+      "email": "vendor@apextech.com",
+      "password": "password123",
+      "role": "vendor",
+      "department": null,
+      "status": "ACTIVE",
+      "token": "mock-jwt-vendor-token",
+      "vendor_details": {
+        "company_name": "Apex Technologies Ltd",
+        "contact_person": "Tanvir Hasan",
+        "phone": "+880 1711 987654",
+        "trade_license": "TL-DH-2024-8891",
+        "tax_id": "TIN-9847291038"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Mustafa Chowdhury",
+      "email": "finance@university.edu",
+      "password": "password123",
+      "role": "finance",
+      "department": "Accounts & Finance",
+      "status": "ACTIVE",
+      "token": "mock-jwt-finance-token"
+    },
+    {
+      "id": 8,
+      "name": "BioMed Systems & Instruments",
+      "email": "vendor@biomed.com",
+      "password": "password123",
+      "role": "vendor",
+      "department": null,
+      "status": "ACTIVE",
+      "token": "mock-jwt-biomed-token",
+      "vendor_details": {
+        "company_name": "BioMed Systems & Instruments",
+        "contact_person": "Rezaul Karim",
+        "phone": "+880 1819 123456",
+        "trade_license": "TL-CTG-2023-4412",
+        "tax_id": "TIN-4820194821"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Metro Data Solutions",
+      "email": "vendor@metrodata.com",
+      "password": "password123",
+      "role": "vendor",
+      "department": null,
+      "status": "PENDING",
+      "token": "mock-jwt-metro-token",
+      "vendor_details": {
+        "company_name": "Metro Data Solutions",
+        "contact_person": "Nasir Uddin",
+        "phone": "+880 1912 345678",
+        "trade_license": "TL-DH-2024-9921",
+        "tax_id": "TIN-5529102931"
+      }
+    }
+  ]
+}

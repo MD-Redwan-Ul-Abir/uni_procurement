@@ -1,0 +1,66 @@
+{
+  "work_orders": [
+    {
+      "id": "WO-2026-001",
+      "circular_id": "CIRC-2026-001",
+      "title": "High-Performance Computing Cluster for AI Lab",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "contract_amount": 82500.0,
+      "issue_date": "2026-02-23",
+      "expected_completion_date": "2026-04-05",
+      "actual_delivery_date": "2026-03-01",
+      "status": "DELIVERED",
+      "department": "Computer Science & Engineering",
+      "contact_person": "Tanvir Hasan (+880 1711 987654)",
+      "scope_summary": "4x RTX 6000 Ada GPU Nodes, InfiniBand HDR Switch, 64TB NVMe Storage rack assembly.",
+      "milestones": [
+        {"name": "Contract Signing & Security Deposit", "completed": true, "date": "2026-02-24"},
+        {"name": "Hardware Shipment & Customs Clearance", "completed": true, "date": "2026-02-28"},
+        {"name": "Delivery to University Campus Lab", "completed": true, "date": "2026-03-01"},
+        {"name": "Rack Installation & Cluster Benchmarking", "completed": false, "date": "Pending"},
+        {"name": "User Acceptance Testing & Handover", "completed": false, "date": "Pending"}
+      ]
+    },
+    {
+      "id": "WO-2026-002",
+      "circular_id": "CIRC-2026-008",
+      "title": "Classroom Interactive Smartboards & Projectors (Phase 2)",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "contract_amount": 105000.0,
+      "issue_date": "2026-02-25",
+      "expected_completion_date": "2026-04-15",
+      "actual_delivery_date": null,
+      "status": "AWARDED",
+      "department": "Academic Affairs",
+      "contact_person": "Tanvir Hasan (+880 1711 987654)",
+      "scope_summary": "24 units of 75-inch 4K Interactive Displays with wall mounting fixtures.",
+      "milestones": [
+        {"name": "Contract Execution & Security Deposit", "completed": true, "date": "2026-02-26"},
+        {"name": "Factory Production & Delivery Batch 1", "completed": false, "date": "Pending"},
+        {"name": "On-site Installation & Faculty Training", "completed": false, "date": "Pending"}
+      ]
+    },
+    {
+      "id": "WO-2025-089",
+      "circular_id": "CIRC-2025-099",
+      "title": "Annual Campus Network Firewall & Security Licensing",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "contract_amount": 34000.0,
+      "issue_date": "2025-11-10",
+      "expected_completion_date": "2025-12-15",
+      "actual_delivery_date": "2025-12-08",
+      "status": "COMPLETED",
+      "department": "IT & Networking Division",
+      "contact_person": "Tanvir Hasan (+880 1711 987654)",
+      "scope_summary": "Enterprise Fortinet UTM license subscription renewals and high-availability configuration.",
+      "milestones": [
+        {"name": "License Keys Activation", "completed": true, "date": "2025-11-20"},
+        {"name": "Audit & Security Validation", "completed": true, "date": "2025-12-05"},
+        {"name": "Final Handover & Full Settlement", "completed": true, "date": "2025-12-08"}
+      ]
+    }
+  ]
+}

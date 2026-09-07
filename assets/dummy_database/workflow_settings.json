@@ -1,0 +1,48 @@
+{
+  "hierarchy_settings": {
+    "tiers": [
+      {
+        "tier_level": 1,
+        "role_title": "Department Head",
+        "role_key": "approver_dept_head",
+        "threshold_min": 0.0,
+        "threshold_max": 50000.0,
+        "auto_escalate_days": 5,
+        "description": "Department internal procurement approval up to $50,000."
+      },
+      {
+        "tier_level": 2,
+        "role_title": "Faculty Dean",
+        "role_key": "approver_dean",
+        "threshold_min": 50000.0,
+        "threshold_max": 150000.0,
+        "auto_escalate_days": 7,
+        "description": "Faculty-level approval required for procurement between $50,000 and $150,000."
+      },
+      {
+        "tier_level": 3,
+        "role_title": "Office of the Registrar",
+        "role_key": "approver_registrar",
+        "threshold_min": 150000.0,
+        "threshold_max": 500000.0,
+        "auto_escalate_days": 10,
+        "description": "Central university administration sanction for procurement between $150,000 and $500,000."
+      },
+      {
+        "tier_level": 4,
+        "role_title": "Syndicate / Board of Regents",
+        "role_key": "syndicate",
+        "threshold_min": 500000.0,
+        "threshold_max": null,
+        "auto_escalate_days": 15,
+        "description": "Highest university governing board sanction for mega projects above $500,000."
+      }
+    ],
+    "rules": {
+      "require_three_quotations_minimum": true,
+      "enable_email_alerts": true,
+      "strict_budget_ceiling_enforcement": true,
+      "tender_public_display_days_minimum": 14
+    }
+  }
+}

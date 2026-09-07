@@ -1,0 +1,169 @@
+{
+  "invoices": [
+    {
+      "id": "INV-2026-301",
+      "work_order_id": "WO-2026-001",
+      "circular_title": "High-Performance Computing Cluster for AI Lab",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "invoice_number": "APEX-2026-0089",
+      "invoice_date": "2026-03-02",
+      "amount": 82500.0,
+      "tax_amount": 4125.0,
+      "total_payable": 86625.0,
+      "status": "PENDING_REVIEW",
+      "chalan_number": "CHAL-DH-88129",
+      "delivery_date": "2026-03-01",
+      "department": "Computer Science & Engineering",
+      "remarks": "Hardware delivery accepted and signed by Lab in-charge. First tranche invoice submitted.",
+      "bank_details": {
+        "bank_name": "Eastern Bank Ltd",
+        "branch": "Gulshan Branch, Dhaka",
+        "account_name": "Apex Technologies Ltd",
+        "account_number": "1041060098712",
+        "routing_number": "095261456"
+      },
+      "attached_documents": [
+        {"name": "Invoice_APEX-0089.pdf", "size_kb": 1450},
+        {"name": "Signed_Goods_Delivery_Chalan.pdf", "size_kb": 2210},
+        {"name": "Lab_Incharge_Acceptance_Cert.pdf", "size_kb": 940}
+      ]
+    },
+    {
+      "id": "INV-2026-302",
+      "work_order_id": "WO-2026-002",
+      "circular_title": "Classroom Interactive Smartboards & Projectors (Phase 2)",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "invoice_number": "APEX-2026-0112",
+      "invoice_date": "2026-03-04",
+      "amount": 52500.0,
+      "tax_amount": 2625.0,
+      "total_payable": 55125.0,
+      "status": "PENDING_REVIEW",
+      "chalan_number": "CHAL-DH-89021",
+      "delivery_date": "2026-03-03",
+      "department": "Academic Affairs",
+      "remarks": "Batch 1 (12 displays) received and inspected by engineering maintenance committee.",
+      "bank_details": {
+        "bank_name": "Eastern Bank Ltd",
+        "branch": "Gulshan Branch, Dhaka",
+        "account_name": "Apex Technologies Ltd",
+        "account_number": "1041060098712",
+        "routing_number": "095261456"
+      },
+      "attached_documents": [
+        {"name": "Invoice_APEX-0112.pdf", "size_kb": 1180},
+        {"name": "Physical_Inspection_Report.pdf", "size_kb": 1720}
+      ]
+    },
+    {
+      "id": "INV-2026-303",
+      "work_order_id": "WO-2026-005",
+      "circular_title": "Advanced Spectrophotometer & Research Centrifuge System",
+      "vendor_id": 8,
+      "vendor_name": "BioLab Diagnostics Ltd",
+      "invoice_number": "BLD-2026-891",
+      "invoice_date": "2026-03-05",
+      "amount": 46000.0,
+      "tax_amount": 2300.0,
+      "total_payable": 48300.0,
+      "status": "PENDING_REVIEW",
+      "chalan_number": "CHAL-CH-34190",
+      "delivery_date": "2026-03-04",
+      "department": "Biochemistry & Molecular Biology",
+      "remarks": "Laboratory calibration verified and safety sign-off completed by department head.",
+      "bank_details": {
+        "bank_name": "City Bank Limited",
+        "branch": "Dhanmondi Branch, Dhaka",
+        "account_name": "BioLab Diagnostics Ltd",
+        "account_number": "210348912001",
+        "routing_number": "085271923"
+      },
+      "attached_documents": [
+        {"name": "Invoice_BLD-891.pdf", "size_kb": 920},
+        {"name": "Calibration_Certificate.pdf", "size_kb": 2450}
+      ]
+    },
+    {
+      "id": "INV-2025-245",
+      "work_order_id": "WO-2025-089",
+      "circular_title": "Annual Campus Network Firewall & Security Licensing",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "invoice_number": "APEX-2025-0982",
+      "invoice_date": "2025-12-10",
+      "amount": 34000.0,
+      "tax_amount": 1700.0,
+      "total_payable": 35700.0,
+      "status": "PAID",
+      "chalan_number": "CHAL-DH-77291",
+      "delivery_date": "2025-12-08",
+      "department": "IT & Networking Division",
+      "remarks": "Payment disbursed via electronic fund transfer on 2025-12-18.",
+      "bank_details": {
+        "bank_name": "Eastern Bank Ltd",
+        "branch": "Gulshan Branch, Dhaka",
+        "account_name": "Apex Technologies Ltd",
+        "account_number": "1041060098712",
+        "routing_number": "095261456"
+      },
+      "attached_documents": [
+        {"name": "Invoice_Paid_Receipt.pdf", "size_kb": 1120}
+      ]
+    },
+    {
+      "id": "INV-2025-230",
+      "work_order_id": "WO-2025-072",
+      "circular_title": "Central Library Automation & RFID Self-Checkout Kiosks",
+      "vendor_id": 11,
+      "vendor_name": "Global Sys Tech Ltd",
+      "invoice_number": "GST-2025-443",
+      "invoice_date": "2025-11-20",
+      "amount": 62000.0,
+      "tax_amount": 3100.0,
+      "total_payable": 65100.0,
+      "status": "PAID",
+      "chalan_number": "CHAL-DH-65109",
+      "delivery_date": "2025-11-18",
+      "department": "Central University Library",
+      "remarks": "Final installment settled following 60-day successful live system trial.",
+      "bank_details": {
+        "bank_name": "BRAC Bank PLC",
+        "branch": "Mohakhali Branch, Dhaka",
+        "account_name": "Global Sys Tech Ltd",
+        "account_number": "1501203948120",
+        "routing_number": "060261198"
+      },
+      "attached_documents": [
+        {"name": "Final_Settlement_Receipt.pdf", "size_kb": 1340},
+        {"name": "Library_Committee_Handover.pdf", "size_kb": 1890}
+      ]
+    }
+  ],
+  "finance_summary": {
+    "total_procurement_budget": 3500000.0,
+    "committed_funds": 2185000.0,
+    "disbursed_funds": 1420000.0,
+    "pending_invoices_amount": 190050.0,
+    "fiscal_year": "2025-2026",
+    "uncommitted_balance": 1315000.0,
+    "avg_turnaround_days": 3.2,
+    "eft_success_rate": "98.5%",
+    "spend_by_department": [
+      {"department": "Computer Science & Engineering", "allocated": 850000.0, "disbursed": 420000.0, "percentage": 29.5},
+      {"department": "Academic Affairs", "allocated": 620000.0, "disbursed": 280000.0, "percentage": 19.7},
+      {"department": "IT & Networking Division", "allocated": 540000.0, "disbursed": 310000.0, "percentage": 21.8},
+      {"department": "Biochemistry & Molecular Biology", "allocated": 480000.0, "disbursed": 210000.0, "percentage": 14.8},
+      {"department": "Central University Library", "allocated": 360000.0, "disbursed": 200000.0, "percentage": 14.2}
+    ],
+    "monthly_disbursements": [
+      {"month": "Oct 2025", "amount": 180000.0},
+      {"month": "Nov 2025", "amount": 295000.0},
+      {"month": "Dec 2025", "amount": 340000.0},
+      {"month": "Jan 2026", "amount": 210000.0},
+      {"month": "Feb 2026", "amount": 265000.0},
+      {"month": "Mar 2026 (MTD)", "amount": 130000.0}
+    ]
+  }
+}

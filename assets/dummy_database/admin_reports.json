@@ -1,0 +1,31 @@
+{
+  "overview": {
+    "total_procurement_spend": 2480000.0,
+    "active_tenders_count": 8,
+    "total_registered_vendors": 46,
+    "pending_verifications_count": 2,
+    "pending_approvals_count": 3,
+    "average_approval_days": 4.8,
+    "on_time_delivery_rate": "94.2%"
+  },
+  "spend_by_category": [
+    {"category": "Scientific & Lab Equipment", "amount": 920000.0, "percentage": 37.1},
+    {"category": "IT & Campus Networking", "amount": 680000.0, "percentage": 27.4},
+    {"category": "Heavy Machinery & Workshop", "amount": 420000.0, "percentage": 16.9},
+    {"category": "Smart Classroom & AV", "amount": 280000.0, "percentage": 11.3},
+    {"category": "Library & Office Automation", "amount": 180000.0, "percentage": 7.3}
+  ],
+  "monthly_trends": [
+    {"month": "Oct 2025", "spend": 190000.0, "circulars": 3},
+    {"month": "Nov 2025", "spend": 340000.0, "circulars": 5},
+    {"month": "Dec 2025", "spend": 510000.0, "circulars": 7},
+    {"month": "Jan 2026", "spend": 430000.0, "circulars": 4},
+    {"month": "Feb 2026", "spend": 620000.0, "circulars": 8},
+    {"month": "Mar 2026", "spend": 390000.0, "circulars": 6}
+  ],
+  "top_performing_vendors": [
+    {"vendor_name": "Apex Technologies Ltd", "orders_count": 5, "total_value": 315000.0, "rating": 4.9},
+    {"vendor_name": "BioMed Systems & Instruments", "orders_count": 3, "total_value": 248000.0, "rating": 4.8},
+    {"vendor_name": "Eastern Engineering Works", "orders_count": 2, "total_value": 195000.0, "rating": 4.7}
+  ]
+}

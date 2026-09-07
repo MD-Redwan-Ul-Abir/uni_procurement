@@ -1,0 +1,68 @@
+{
+  "vendors": [
+    {
+      "id": 9,
+      "company_name": "Metro Data Solutions",
+      "email": "vendor@metrodata.com",
+      "contact_person": "Nasir Uddin",
+      "phone": "+880 1912 345678",
+      "address": "Plot 42, Road 11, Banani, Dhaka-1213",
+      "trade_license_number": "TL-DH-2024-9921",
+      "trade_license_file": "TradeLicense_MetroData.pdf",
+      "tax_id": "TIN-5529102931",
+      "tax_id_file": "TaxCertificate_2025_Metro.pdf",
+      "registration_date": "2026-03-04",
+      "status": "PENDING",
+      "notes": "Application submitted with complete company registration docs. Awaiting TIN database cross-check."
+    },
+    {
+      "id": 14,
+      "company_name": "Horizon Scientific Instruments",
+      "email": "info@horizonscientific.com",
+      "contact_person": "Dr. Mahbub Alam",
+      "phone": "+880 1715 678901",
+      "address": "Kawran Bazar Commercial Area, Dhaka",
+      "trade_license_number": "TL-DH-2023-1102",
+      "trade_license_file": "Horizon_TL_Scanned.pdf",
+      "tax_id": "TIN-7782019482",
+      "tax_id_file": "Horizon_TIN.pdf",
+      "registration_date": "2026-03-05",
+      "status": "PENDING",
+      "notes": "New vendor applying for scientific instrument tenders. ISO 17025 certificate attached."
+    },
+    {
+      "id": 6,
+      "company_name": "Apex Technologies Ltd",
+      "email": "vendor@apextech.com",
+      "contact_person": "Tanvir Hasan",
+      "phone": "+880 1711 987654",
+      "address": "Level 7, UTC Building, Panthapath, Dhaka-1205",
+      "trade_license_number": "TL-DH-2024-8891",
+      "trade_license_file": "Apex_Trade_License_Verified.pdf",
+      "tax_id": "TIN-9847291038",
+      "tax_id_file": "Apex_Tax_Return_Cert.pdf",
+      "registration_date": "2024-05-12",
+      "status": "ACTIVE",
+      "verified_date": "2024-05-15",
+      "verified_by": "Dr. Arthur Vance (Admin)",
+      "notes": "Verified Tier-1 OEM partner for compute and enterprise networks."
+    },
+    {
+      "id": 8,
+      "company_name": "BioMed Systems & Instruments",
+      "email": "vendor@biomed.com",
+      "contact_person": "Rezaul Karim",
+      "phone": "+880 1819 123456",
+      "address": "Agrabad Commercial Area, Chittagong",
+      "trade_license_number": "TL-CTG-2023-4412",
+      "trade_license_file": "BioMed_TL_Verified.pdf",
+      "tax_id": "TIN-4820194821",
+      "tax_id_file": "BioMed_TIN_Receipt.pdf",
+      "registration_date": "2024-08-01",
+      "status": "ACTIVE",
+      "verified_date": "2024-08-04",
+      "verified_by": "Dr. Arthur Vance (Admin)",
+      "notes": "Accredited chemical and analytical instrumentation supplier."
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "bids": [
+    {
+      "id": "BID-2026-101",
+      "circular_id": "CIRC-2026-001",
+      "circular_title": "High-Performance Computing Cluster for AI Lab",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "quoted_amount": 82500.0,
+      "submission_date": "2026-02-12",
+      "status": "AWARDED",
+      "delivery_days": 40,
+      "technical_score": 96.5,
+      "financial_score": 98.2,
+      "total_score": 97.2,
+      "remarks": "Lowest responsive evaluated bidder meeting all OEM Ada Lovelace GPU requirements.",
+      "documents": [
+        {"name": "Technical_Proposal_Apex.pdf", "size_kb": 3420},
+        {"name": "BOQ_Financial_Quotation.pdf", "size_kb": 1210},
+        {"name": "NVIDIA_OEM_MAF.pdf", "size_kb": 890}
+      ]
+    },
+    {
+      "id": "BID-2026-102",
+      "circular_id": "CIRC-2026-001",
+      "circular_title": "High-Performance Computing Cluster for AI Lab",
+      "vendor_id": 8,
+      "vendor_name": "BioMed Systems & Instruments",
+      "quoted_amount": 89000.0,
+      "submission_date": "2026-02-14",
+      "status": "EVALUATED",
+      "delivery_days": 45,
+      "technical_score": 92.0,
+      "financial_score": 91.0,
+      "total_score": 91.6,
+      "remarks": "Technically compliant; higher financial bid.",
+      "documents": [
+        {"name": "Bid_BioMed_Full.pdf", "size_kb": 4200}
+      ]
+    },
+    {
+      "id": "BID-2026-103",
+      "circular_id": "CIRC-2026-002",
+      "circular_title": "Automated Spectral Photometers & Bio-Analyzers",
+      "vendor_id": 8,
+      "vendor_name": "BioMed Systems & Instruments",
+      "quoted_amount": 139500.0,
+      "submission_date": "2026-03-01",
+      "status": "RECOMMENDED",
+      "delivery_days": 50,
+      "technical_score": 98.0,
+      "financial_score": 95.5,
+      "total_score": 97.0,
+      "remarks": "Rank 1 evaluated proposal forwarded for Dean & Registrar sanction.",
+      "documents": [
+        {"name": "Spectro_Tech_Compliance.pdf", "size_kb": 5100},
+        {"name": "Priced_Offer_BioMed.pdf", "size_kb": 980}
+      ]
+    },
+    {
+      "id": "BID-2026-104",
+      "circular_id": "CIRC-2026-003",
+      "circular_title": "Campus-Wide Optical Fiber & 10G Switch Upgrade",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "quoted_amount": 182000.0,
+      "submission_date": "2026-03-08",
+      "status": "UNDER_REVIEW",
+      "delivery_days": 75,
+      "technical_score": 94.0,
+      "financial_score": null,
+      "total_score": null,
+      "remarks": "Technical evaluation completed; financial envelope unsealing scheduled.",
+      "documents": [
+        {"name": "Fiber_Route_Survey_Apex.pdf", "size_kb": 8900},
+        {"name": "Switch_Specs_Cisco.pdf", "size_kb": 2300}
+      ]
+    },
+    {
+      "id": "BID-2026-105",
+      "circular_id": "CIRC-2026-004",
+      "circular_title": "Central Library RFID Circulation & Self-Checkout System",
+      "vendor_id": 6,
+      "vendor_name": "Apex Technologies Ltd",
+      "quoted_amount": 59800.0,
+      "submission_date": "2026-03-10",
+      "status": "SUBMITTED",
+      "delivery_days": 25,
+      "technical_score": null,
+      "financial_score": null,
+      "total_score": null,
+      "remarks": "Bid submitted on time; awaiting evaluation committee opening.",
+      "documents": [
+        {"name": "Library_RFID_Solution_Doc.pdf", "size_kb": 2840}
+      ]
+    }
+  ]
+}

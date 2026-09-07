@@ -1,0 +1,74 @@
+{
+  "matrices": [
+    {
+      "circular_id": "CIRC-2026-001",
+      "circular_title": "High-Performance Computing Cluster for AI Lab",
+      "department": "Computer Science & Engineering",
+      "budget": 85000.0,
+      "evaluation_date": "2026-02-18",
+      "committee_head": "Prof. Tariq Rahman",
+      "vendors": [
+        {
+          "vendor_id": 6,
+          "vendor_name": "Apex Technologies Ltd",
+          "quoted_amount": 82500.0,
+          "difference_from_budget": -2500.0,
+          "delivery_timeline": "40 Days",
+          "warranty": "3 Years On-site 24/7",
+          "technical_compliance": "100% Compliant (All 4x RTX 6000 Ada)",
+          "technical_score": 96.5,
+          "financial_score": 98.2,
+          "composite_score": 97.2,
+          "rank": 1,
+          "status": "Recommended Winner",
+          "criteria_breakdown": {
+            "oem_authorization": "Yes (Tier 1)",
+            "benchmark_hpc_rating": "58 TFLOPS FP32",
+            "cooling_thermal_spec": "Meets Lab Ambient Specs",
+            "sla_response_time": "< 4 Hours"
+          }
+        },
+        {
+          "vendor_id": 8,
+          "vendor_name": "BioMed Systems & Instruments",
+          "quoted_amount": 89000.0,
+          "difference_from_budget": 4000.0,
+          "delivery_timeline": "45 Days",
+          "warranty": "3 Years Standard",
+          "technical_compliance": "Compliant with minor deviations",
+          "technical_score": 92.0,
+          "financial_score": 91.0,
+          "composite_score": 91.6,
+          "rank": 2,
+          "status": "Responsive",
+          "criteria_breakdown": {
+            "oem_authorization": "Yes (Tier 2)",
+            "benchmark_hpc_rating": "54 TFLOPS FP32",
+            "cooling_thermal_spec": "Compliant",
+            "sla_response_time": "< 12 Hours"
+          }
+        },
+        {
+          "vendor_id": 10,
+          "vendor_name": "Silicon Byte Computing Ltd",
+          "quoted_amount": 84000.0,
+          "difference_from_budget": -1000.0,
+          "delivery_timeline": "60 Days",
+          "warranty": "2 Years Limited",
+          "technical_compliance": "Non-compliant on InfiniBand switch latency",
+          "technical_score": 78.5,
+          "financial_score": 96.4,
+          "composite_score": 85.7,
+          "rank": 3,
+          "status": "Disqualified",
+          "criteria_breakdown": {
+            "oem_authorization": "Yes",
+            "benchmark_hpc_rating": "48 TFLOPS FP32",
+            "cooling_thermal_spec": "Requires extra AC",
+            "sla_response_time": "Next Business Day"
+          }
+        }
+      ]
+    }
+  ]
+}

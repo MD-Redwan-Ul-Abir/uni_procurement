@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Dr. Arthur Vance",
+      "email": "admin@university.edu",
+      "role": "admin",
+      "department": "Central Administration",
+      "status": "ACTIVE",
+      "created_at": "2024-01-10",
+      "last_login": "2026-03-07 07:15 AM"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Sarah Ahmed",
+      "email": "initiator@university.edu",
+      "role": "initiator",
+      "department": "Computer Science & Engineering",
+      "status": "ACTIVE",
+      "created_at": "2024-02-15",
+      "last_login": "2026-03-06 04:30 PM"
+    },
+    {
+      "id": 3,
+      "name": "Prof. Tariq Rahman",
+      "email": "depthead@university.edu",
+      "role": "approver_dept_head",
+      "department": "Computer Science & Engineering",
+      "status": "ACTIVE",
+      "created_at": "2024-01-12",
+      "last_login": "2026-03-06 11:45 AM"
+    },
+    {
+      "id": 4,
+      "name": "Prof. Kamal Hossain",
+      "email": "dean@university.edu",
+      "role": "approver_dean",
+      "department": "Faculty of Engineering",
+      "status": "ACTIVE",
+      "created_at": "2024-01-15",
+      "last_login": "2026-03-05 02:20 PM"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Fatima Noor",
+      "email": "registrar@university.edu",
+      "role": "approver_registrar",
+      "department": "Office of the Registrar",
+      "status": "ACTIVE",
+      "created_at": "2024-01-08",
+      "last_login": "2026-03-04 09:10 AM"
+    },
+    {
+      "id": 7,
+      "name": "Mustafa Chowdhury",
+      "email": "finance@university.edu",
+      "role": "finance",
+      "department": "Accounts & Finance",
+      "status": "ACTIVE",
+      "created_at": "2024-02-01",
+      "last_login": "2026-03-07 06:50 AM"
+    },
+    {
+      "id": 12,
+      "name": "Prof. Delwar Hossain",
+      "email": "delwar.hossain@university.edu",
+      "role": "initiator",
+      "department": "Academic Affairs",
+      "status": "ACTIVE",
+      "created_at": "2024-06-18",
+      "last_login": "2026-03-01 01:20 PM"
+    },
+    {
+      "id": 13,
+      "name": "Dr. Munira Khan",
+      "email": "munira.khan@university.edu",
+      "role": "initiator",
+      "department": "University Medical Center",
+      "status": "INACTIVE",
+      "created_at": "2024-08-20",
+      "last_login": "2026-02-14 10:00 AM"
+    }
+  ]
+}

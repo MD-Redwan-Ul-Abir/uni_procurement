@@ -1,0 +1,169 @@
+{
+  "details": {
+    "CIRC-2026-001": {
+      "circular_id": "CIRC-2026-001",
+      "scope_of_work": "Procurement, configuration, cluster orchestration, benchmark testing and 3-year on-site SLA warranty for GPU Compute Nodes and 100Gbps InfiniBand Switching Fabric.",
+      "delivery_period_days": 45,
+      "warranty_years": 3,
+      "bid_security_amount": 2500.0,
+      "contact_email": "procure.cse@university.edu",
+      "items": [
+        {
+          "item_no": 1,
+          "description": "GPU Compute Node (2x Intel Xeon Gold, 4x NVIDIA RTX 6000 Ada 48GB, 512GB ECC RAM)",
+          "quantity": 4,
+          "unit": "Units",
+          "unit_estimated_price": 17500.0
+        },
+        {
+          "item_no": 2,
+          "description": "100 Gbps HDR InfiniBand Managed Switch (36 ports) with DAC cables",
+          "quantity": 1,
+          "unit": "Unit",
+          "unit_estimated_price": 7500.0
+        },
+        {
+          "item_no": 3,
+          "description": "High-Speed NVMe Storage Head (64TB Raw NVMe RAID array)",
+          "quantity": 1,
+          "unit": "Unit",
+          "unit_estimated_price": 7500.0
+        }
+      ],
+      "eligibility_criteria": [
+        "Must be an authorized tier-1 OEM partner for compute and accelerator hardware",
+        "Minimum 5 years demonstrated experience in enterprise/university HPC installations",
+        "Valid Trade License, Tax Identification Certificate, and Audited Financials for the last 2 years",
+        "Ability to furnish 5% Performance Security upon contract signing"
+      ],
+      "required_documents": [
+        "Company Profile & Trade License",
+        "Manufacturer Authorization Form (MAF)",
+        "Technical Proposal & Compliance Matrix",
+        "Priced Financial Proposal with BOQ breakdown",
+        "Past Project Reference Letters (minimum 3)"
+      ]
+    },
+    "CIRC-2026-002": {
+      "circular_id": "CIRC-2026-002",
+      "scope_of_work": "Supply and calibration of research-grade UV-Vis Double Beam Spectrophotometers with peltier temperature controllers and microplate absorbance readers.",
+      "delivery_period_days": 60,
+      "warranty_years": 2,
+      "bid_security_amount": 4000.0,
+      "contact_email": "chem.store@university.edu",
+      "items": [
+        {
+          "item_no": 1,
+          "description": "Dual-Beam UV-Vis Spectrophotometer with Peltier System",
+          "quantity": 2,
+          "unit": "Units",
+          "unit_estimated_price": 45000.0
+        },
+        {
+          "item_no": 2,
+          "description": "Microplate Multi-mode Absorbance Reader",
+          "quantity": 1,
+          "unit": "Unit",
+          "unit_estimated_price": 35000.0
+        },
+        {
+          "item_no": 3,
+          "description": "Quartz cuvette sets, calibration standards, and workstation PC",
+          "quantity": 2,
+          "unit": "Sets",
+          "unit_estimated_price": 10000.0
+        }
+      ],
+      "eligibility_criteria": [
+        "Accredited ISO 9001 certified laboratory instrument vendor",
+        "Factory-trained technical support engineers available locally",
+        "Minimum 3 client endorsements from accredited research universities"
+      ],
+      "required_documents": [
+        "ISO Certifications & Manufacturer Authorization",
+        "Detailed Technical Specifications Sheet",
+        "Financial Quotation",
+        "Client Reference List"
+      ]
+    },
+    "CIRC-2026-003": {
+      "circular_id": "CIRC-2026-003",
+      "scope_of_work": "Turnkey network backbone deployment including fiber laying across 6 campus faculties, core routing configuration, and 10Gbps uplinks.",
+      "delivery_period_days": 90,
+      "warranty_years": 5,
+      "bid_security_amount": 5500.0,
+      "contact_email": "network.admin@university.edu",
+      "items": [
+        {
+          "item_no": 1,
+          "description": "Single-Mode Armored Outdoor Optical Fiber Cable (24 Core)",
+          "quantity": 8500,
+          "unit": "Meters",
+          "unit_estimated_price": 8.0
+        },
+        {
+          "item_no": 2,
+          "description": "Enterprise Core Switch 48-port SFP+ 10Gbps with redundant PSU",
+          "quantity": 6,
+          "unit": "Units",
+          "unit_estimated_price": 12000.0
+        },
+        {
+          "item_no": 3,
+          "description": "Outdoor Weatherproof Wi-Fi 6 APs with POE+ Injectors",
+          "quantity": 40,
+          "unit": "Units",
+          "unit_estimated_price": 1250.0
+        }
+      ],
+      "eligibility_criteria": [
+        "Certified Network System Integrator (Gold or Platinum partner)",
+        "Over 10km optical fiber deployment track record in campus/enterprise environment"
+      ],
+      "required_documents": [
+        "MAF from Switch & Fiber OEMs",
+        "Network Topology Design Diagram",
+        "Line item quotation"
+      ]
+    },
+    "CIRC-2026-004": {
+      "circular_id": "CIRC-2026-004",
+      "scope_of_work": "Automation of Central Library loan, return, catalog search and inventory audits using HF RFID technology.",
+      "delivery_period_days": 30,
+      "warranty_years": 2,
+      "bid_security_amount": 1800.0,
+      "contact_email": "library.procure@university.edu",
+      "items": [
+        {
+          "item_no": 1,
+          "description": "Dual-aisle RFID Security Detection Gate",
+          "quantity": 2,
+          "unit": "Sets",
+          "unit_estimated_price": 14000.0
+        },
+        {
+          "item_no": 2,
+          "description": "Self-Service Touchscreen Checkout Kiosk with receipt printer",
+          "quantity": 2,
+          "unit": "Units",
+          "unit_estimated_price": 9000.0
+        },
+        {
+          "item_no": 3,
+          "description": "Library Book RFID Adhesive Tags (roll of 20,000 tags)",
+          "quantity": 3,
+          "unit": "Rolls",
+          "unit_estimated_price": 5000.0
+        }
+      ],
+      "eligibility_criteria": [
+        "Proven Koha / DSpace library software integration experience",
+        "Local spare parts availability and 24/7 hotline support"
+      ],
+      "required_documents": [
+        "Software integration compliance report",
+        "Financial tender document"
+      ]
+    }
+  }
+}
