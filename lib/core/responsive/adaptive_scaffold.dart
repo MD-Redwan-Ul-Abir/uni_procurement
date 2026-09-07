@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../services/permission_service.dart';
 import '../theme/app_colors.dart';
+import '../widgets/app_logo.dart';
 import 'breakpoints.dart';
 
 /// Navigation item for the sidebar/drawer.
@@ -215,11 +216,11 @@ class _DesktopSidebar extends StatelessWidget {
             height: 64,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             alignment: Alignment.centerLeft,
-            child: Row(
+            child: const Row(
               children: [
-                const Icon(Icons.account_balance, color: AppColors.primary, size: 28),
-                const SizedBox(width: 12),
-                const Flexible(
+                AppLogo(size: 32),
+                SizedBox(width: 12),
+                Flexible(
                   child: Text(
                     'UniProcure',
                     style: TextStyle(
@@ -363,8 +364,7 @@ class _TabletRail extends StatelessWidget {
           Container(
             height: 64,
             alignment: Alignment.center,
-            child: Icon(Icons.account_balance,
-                color: AppColors.primary, size: 28),
+            child: const AppLogo(size: 32),
           ),
           const Divider(height: 1),
           const SizedBox(height: 8),
@@ -459,11 +459,11 @@ class _MobileDrawer extends StatelessWidget {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: Row(
+            child: const Row(
               children: [
-                Icon(Icons.account_balance, color: Colors.white, size: 36),
-                const SizedBox(width: 14),
-                const Text(
+                AppLogo(size: 38),
+                SizedBox(width: 14),
+                Text(
                   'UniProcure',
                   style: TextStyle(
                     color: Colors.white,

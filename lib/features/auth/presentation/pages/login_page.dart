@@ -5,6 +5,7 @@ import '../../../../core/responsive/responsive_builder.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_logo.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../controllers/auth_controller.dart';
 
@@ -126,9 +127,8 @@ class _MobileLoginLayout extends StatelessWidget {
         child: Column(
           children: [
             // Compact branding.
-            Icon(Icons.account_balance,
-                size: 48, color: AppColors.primary),
-            const SizedBox(height: 12),
+            const AppLogo(size: 64),
+            const SizedBox(height: 16),
             Text(
               'UniProcure',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -183,9 +183,7 @@ class _BrandingPanel extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.account_balance,
-                      color: Colors.white.withValues(alpha: 0.9),
-                      size: compact ? 32 : 40),
+                  AppLogo(size: compact ? 38 : 48),
                   const SizedBox(width: 14),
                   Text(
                     'UniProcure',
