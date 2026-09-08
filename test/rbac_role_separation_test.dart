@@ -68,7 +68,7 @@ void main() {
       final routes = navItems.map((item) => item.route).toList();
 
       expect(routes, contains('/vendor/dashboard'));
-      expect(routes, contains('/circulars'));
+      expect(routes, contains('/vendor/circulars'));
       expect(routes, contains('/vendor/my-bids'));
       expect(routes, contains('/work-orders'));
 

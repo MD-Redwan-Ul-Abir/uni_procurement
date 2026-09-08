@@ -386,12 +386,14 @@ class _LoginForm extends StatelessWidget {
                       children: [
                         Icon(Icons.badge_outlined, size: 16, color: AppColors.primary),
                         const SizedBox(width: 6),
-                        Text(
-                          'Showcase Demo Accounts (1-Tap Login)',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primary,
+                        Expanded(
+                          child: Text(
+                            'Showcase Demo Accounts (1-Tap Login)',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
                           ),
                         ),
                       ],
@@ -452,9 +454,7 @@ class _LoginForm extends StatelessWidget {
       backgroundColor: Colors.white,
       side: const BorderSide(color: AppColors.border),
       onPressed: () {
-        controller.emailController.text = email;
-        controller.passwordController.text = 'password123';
-        controller.login();
+        controller.quickLogin(email, 'password123');
       },
     );
   }

@@ -25,7 +25,8 @@ class MyBidsPage extends StatelessWidget {
       title: 'My Bids & Participation History',
       selectedIndex: 2,
       body: Obx(() {
-        final currentUser = storage.cachedUser;
+        Map<String, dynamic>? currentUser = storage.cachedUser;
+        currentUser ??= db.users.firstWhereOrNull((u) => u['role'] == 'vendor');
         final userId = currentUser?['id'];
         final userName = (currentUser?['name'] ?? '').toString().toLowerCase();
         final userEmail = (currentUser?['email'] ?? '').toString().toLowerCase();

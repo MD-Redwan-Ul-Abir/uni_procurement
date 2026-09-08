@@ -34,13 +34,17 @@ class StorageService extends GetxService {
   // ── Cached User ──
 
   Map<String, dynamic>? get cachedUser {
-    final raw = _box.read<String>(AppConstants.userKey);
+    final raw = _box.read(AppConstants.userKey);
     if (raw == null) return null;
-    try {
-      return jsonDecode(raw) as Map<String, dynamic>;
-    } catch (_) {
-      return null;
+    if (raw is Map) return Map<String, dynamic>.from(raw);
+    if (raw is String) {
+      try {
+        return jsonDecode(raw) as Map<String, dynamic>;
+      } catch (_) {
+        return null;
+      }
     }
+    return null;
   }
 
   Future<void> cacheUser(Map<String, dynamic> userJson) async {

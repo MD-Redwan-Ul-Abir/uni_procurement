@@ -22,7 +22,8 @@ class VendorDashboardPage extends StatelessWidget {
       body: Obx(() {
         final db = Get.find<DummyDatabaseService>();
         final storage = Get.find<StorageService>();
-        final currentUser = storage.cachedUser;
+        Map<String, dynamic>? currentUser = storage.cachedUser;
+        currentUser ??= db.users.firstWhereOrNull((u) => u['role'] == 'vendor');
         final userId = currentUser?['id'];
         final userName = (currentUser?['name'] ?? '').toString().toLowerCase();
         final userEmail = (currentUser?['email'] ?? '').toString().toLowerCase();
@@ -274,7 +275,7 @@ class VendorDashboardPage extends StatelessWidget {
                             final status =
                                 bid['status'] as String? ?? 'SUBMITTED';
                             final deliveryDays =
-                                bid['delivery_days'] as int? ?? 30;
+                                (bid['delivery_days'] as num?)?.toInt() ?? 30;
 
                             Color statusColor = AppColors.info;
                             if (status == 'AWARDED') {

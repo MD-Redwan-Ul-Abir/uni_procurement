@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:toastification/toastification.dart';
 
+import 'core/constants/app_enums.dart';
 import 'core/network/auth_interceptor.dart';
 import 'core/routes/app_pages.dart';
 import 'core/routes/app_routes.dart';
@@ -23,7 +24,18 @@ void main() async {
   final dummyDb = await DummyDatabaseService().init();
   Get.put(dummyDb, permanent: true);
   Get.put(AuthInterceptor(), permanent: true);
-  Get.put(PermissionService(), permanent: true);
+
+  final permission = PermissionService();
+  // Restore existing session role on boot/refresh
+  if (storage.hasToken && storage.cachedUser != null) {
+    try {
+      final cachedRole = storage.cachedUser!['role']?.toString();
+      if (cachedRole != null) {
+        permission.setRole(UserRole.fromString(cachedRole));
+      }
+    } catch (_) {}
+  }
+  Get.put(permission, permanent: true);
 
   // Listen for multi-tab logout.
   storage.listenForSessionChanges(() {

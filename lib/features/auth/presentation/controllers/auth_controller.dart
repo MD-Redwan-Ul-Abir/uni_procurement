@@ -62,25 +62,53 @@ class AuthController extends GetxController {
           );
         }
       },
-      (user) {
+      (user) async {
         isLoading.value = false;
-        _onLoginSuccess(user);
+        await _onLoginSuccess(user);
       },
     );
   }
 
-  void _onLoginSuccess(UserEntity user) {
+  // ── 1-Tap Showcase Login ──
+  Future<void> quickLogin(String email, String password) async {
+    emailController.text = email;
+    passwordController.text = password;
+    loginError.value = null;
+    fieldErrors.clear();
+    isLoading.value = true;
+
+    final result = await _loginUseCase(email.trim(), password);
+    result.fold(
+      (failure) {
+        isLoading.value = false;
+        if (failure.statusCode == 401) {
+          loginError.value = failure.message;
+        } else {
+          AppToast.error(
+            title: 'Login Error',
+            description: failure.message,
+          );
+        }
+      },
+      (user) async {
+        isLoading.value = false;
+        await _onLoginSuccess(user, forceHome: true);
+      },
+    );
+  }
+
+  Future<void> _onLoginSuccess(UserEntity user, {bool forceHome = false}) async {
     currentUser.value = user;
 
     // Persist token.
     final storage = Get.find<StorageService>();
     if (user.token != null) {
-      storage.saveToken(user.token!);
+      await storage.saveToken(user.token!);
     }
 
     // Cache user data.
     if (user is UserModel) {
-      storage.cacheUser(user.toJson());
+      await storage.cacheUser(user.toJson());
     }
 
     // Set role in permission service.
@@ -93,8 +121,8 @@ class AuthController extends GetxController {
       return;
     }
 
-    // Redirect: honor ?redirect= param or go to role's home.
-    final redirect = Get.parameters['redirect'];
+    // Redirect: honor ?redirect= param unless forceHome is requested.
+    final redirect = forceHome ? null : Get.parameters['redirect'];
     if (redirect != null && redirect.isNotEmpty && permission.canAccess(redirect)) {
       Get.offAllNamed(redirect);
     } else {

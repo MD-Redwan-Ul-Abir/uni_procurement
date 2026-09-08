@@ -169,7 +169,7 @@ class PermissionService extends GetxService {
           NavItem(
               label: 'Active Circulars',
               icon: Icons.campaign_outlined,
-              route: '/circulars'),
+              route: '/vendor/circulars'),
           NavItem(
               label: 'My Bids',
               icon: Icons.gavel_outlined,
