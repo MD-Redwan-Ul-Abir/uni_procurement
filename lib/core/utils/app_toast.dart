@@ -9,7 +9,7 @@ class AppToast {
   AppToast._();
 
   /// Show a success toast notification
-  static ToastificationItem success({
+  static ToastificationItem? success({
     required String title,
     String? description,
     BuildContext? context,
@@ -28,7 +28,7 @@ class AppToast {
   }
 
   /// Show an error toast notification
-  static ToastificationItem error({
+  static ToastificationItem? error({
     required String title,
     String? description,
     BuildContext? context,
@@ -47,7 +47,7 @@ class AppToast {
   }
 
   /// Show an info toast notification
-  static ToastificationItem info({
+  static ToastificationItem? info({
     required String title,
     String? description,
     BuildContext? context,
@@ -66,7 +66,7 @@ class AppToast {
   }
 
   /// Show a warning toast notification
-  static ToastificationItem warning({
+  static ToastificationItem? warning({
     required String title,
     String? description,
     BuildContext? context,
@@ -85,7 +85,7 @@ class AppToast {
   }
 
   /// Show a customized toast notification
-  static ToastificationItem show({
+  static ToastificationItem? show({
     required String title,
     String? description,
     ToastificationType type = ToastificationType.info,
@@ -96,8 +96,10 @@ class AppToast {
     AlignmentGeometry alignment = Alignment.topRight,
     bool showProgressBar = true,
   }) {
+    final targetContext = context ?? Get.context;
+    if (targetContext == null) return null;
     return toastification.show(
-      context: context ?? Get.context,
+      context: targetContext,
       type: type,
       style: style,
       title: Text(

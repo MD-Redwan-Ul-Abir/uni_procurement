@@ -52,7 +52,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 100));
       await tester.pump(const Duration(milliseconds: 500));
 
-      expect(toastification.findToastificationItem(item.id), isNotNull);
+      expect(toastification.findToastificationItem(item!.id), isNotNull);
       expect(item.id.isNotEmpty, isTrue);
 
       // Trigger error toast
@@ -63,7 +63,7 @@ void main() {
       );
       await tester.pump(const Duration(milliseconds: 100));
 
-      expect(toastification.findToastificationItem(errorItem.id), isNotNull);
+      expect(toastification.findToastificationItem(errorItem!.id), isNotNull);
       expect(errorItem.id.isNotEmpty, isTrue);
 
       // Clean up toastification timers
