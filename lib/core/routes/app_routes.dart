@@ -16,12 +16,23 @@ class AppRoutes {
   static const String adminWorkflowSettings = '/admin/workflow-settings';
   static const String adminReports = '/admin/reports';
 
-  // ── Circulars ──
+  // ── Initiator ──
+  static const String initiatorDashboard = '/initiator/dashboard';
+  static const String initiatorNewCircular = '/initiator/circulars/new';
+  static const String initiatorHistory = '/initiator/history';
+
+  // ── Circulars (Public / Initiator / Admin) ──
   static const String circulars = '/circulars';
   static const String circularCreate = '/circulars/create';
   static const String circularDetail = '/circulars/:id';
 
-  // ── Bidding ──
+  // ── Vendor ──
+  static const String vendorDashboard = '/vendor/dashboard';
+  static const String vendorCirculars = '/vendor/circulars';
+  static const String vendorCircularDetail = '/vendor/circulars/:id';
+  static const String vendorMyBids = '/vendor/my-bids';
+
+  // ── Bidding (Vendor) ──
   static const String bidSubmit = '/circulars/:id/bid';
   static const String myBids = '/bids';
 
@@ -45,3 +56,4 @@ class AppRoutes {
   static const String financeCompleted = '/finance/completed';
   static const String financeReview = '/finance/review/:id';
 }
+

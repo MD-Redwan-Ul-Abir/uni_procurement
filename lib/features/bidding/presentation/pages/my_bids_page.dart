@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_enums.dart';
 import '../../../../core/responsive/adaptive_scaffold.dart';
 import '../../../../core/services/dummy_database_service.dart';
+import '../../../../core/services/permission_service.dart';
+import '../../../../core/services/storage_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/empty_state.dart';
@@ -14,13 +17,34 @@ class MyBidsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final db = Get.find<DummyDatabaseService>();
+    final storage = Get.find<StorageService>();
+    final permission = Get.find<PermissionService>();
     final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
 
     return AdaptiveScaffold(
-      title: 'My Submitted Bids',
-      selectedIndex: 1,
+      title: 'My Bids & Participation History',
+      selectedIndex: 2,
       body: Obx(() {
-        final bids = db.bids;
+        final currentUser = storage.cachedUser;
+        final userId = currentUser?['id'];
+        final userName = (currentUser?['name'] ?? '').toString().toLowerCase();
+        final userEmail = (currentUser?['email'] ?? '').toString().toLowerCase();
+
+        // Admin can see all bids; vendors only see their own bids
+        final bids = (permission.currentRole == UserRole.admin)
+            ? db.bids
+            : db.bids.where((b) {
+                final bVendorId = b['vendor_id'];
+                final bVendorName =
+                    (b['vendor_name'] ?? '').toString().toLowerCase();
+                final bVendorEmail =
+                    (b['vendor_email'] ?? '').toString().toLowerCase();
+
+                return (userId != null && bVendorId == userId) ||
+                    (userName.isNotEmpty && bVendorName == userName) ||
+                    (userEmail.isNotEmpty && bVendorEmail == userEmail);
+              }).toList();
+
         if (bids.isEmpty) {
           return const EmptyState(
             icon: Icons.gavel_outlined,

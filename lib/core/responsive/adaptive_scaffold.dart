@@ -253,16 +253,17 @@ class _DesktopSidebar extends StatelessWidget {
               },
             ),
           ),
-          // Logout.
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: _SidebarTile(
-              item: const NavItem(
-                  label: 'Logout', icon: Icons.logout, route: '/login'),
-              selected: false,
-              onTap: () => Get.find<PermissionService>().logout(),
+          // Logout (authenticated only).
+          if (Get.find<PermissionService>().currentRole != null)
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: _SidebarTile(
+                item: const NavItem(
+                    label: 'Logout', icon: Icons.logout, route: '/login'),
+                selected: false,
+                onTap: () => Get.find<PermissionService>().logout(),
+              ),
             ),
-          ),
         ],
       ),
     );
@@ -519,18 +520,18 @@ class _MobileDrawer extends StatelessWidget {
               },
             ),
           ),
-          const Divider(),
-          ListTile(
-            leading:
-                Icon(Icons.logout, color: AppColors.error),
-            title: Text('Logout',
-                style: TextStyle(color: AppColors.error)),
-            onTap: () {
-              Navigator.pop(context);
-              Get.find<PermissionService>().logout();
-            },
-          ),
-          const SizedBox(height: 8),
+          if (Get.find<PermissionService>().currentRole != null) ...[
+            const Divider(),
+            ListTile(
+              leading: Icon(Icons.logout, color: AppColors.error),
+              title: Text('Logout', style: TextStyle(color: AppColors.error)),
+              onTap: () {
+                Navigator.pop(context);
+                Get.find<PermissionService>().logout();
+              },
+            ),
+            const SizedBox(height: 8),
+          ],
         ],
       ),
     );
@@ -542,6 +543,34 @@ class _MobileDrawer extends StatelessWidget {
 class _UserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final permission = Get.find<PermissionService>();
+    if (permission.currentRole == null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          OutlinedButton(
+            onPressed: () => Get.toNamed('/login'),
+            style: OutlinedButton.styleFrom(
+              visualDensity: VisualDensity.compact,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+            ),
+            child: const Text('Sign In'),
+          ),
+          const SizedBox(width: 8),
+          ElevatedButton(
+            onPressed: () => Get.toNamed('/vendor/register'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              visualDensity: VisualDensity.compact,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+            ),
+            child: const Text('Register'),
+          ),
+        ],
+      );
+    }
+
     return PopupMenuButton<String>(
       offset: const Offset(0, 48),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

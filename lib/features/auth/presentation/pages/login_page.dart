@@ -432,6 +432,14 @@ class _LoginForm extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 8),
+              Center(
+                child: TextButton.icon(
+                  onPressed: () => Get.toNamed('/circulars'),
+                  icon: const Icon(Icons.campaign_outlined, size: 16),
+                  label: const Text('Browse Public Tenders (No login required)'),
+                ),
+              ),
             ],
           ),
         ));

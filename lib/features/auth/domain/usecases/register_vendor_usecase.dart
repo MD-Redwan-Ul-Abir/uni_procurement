@@ -17,6 +17,8 @@ class RegisterVendorUseCase {
     required dynamic tradeLicenseFile,
     required String taxId,
     required dynamic taxIdFile,
+    required String binNumber,
+    required dynamic binFile,
     required String email,
     required String password,
   }) {
@@ -29,6 +31,8 @@ class RegisterVendorUseCase {
       tradeLicenseFile: tradeLicenseFile,
       taxId: taxId,
       taxIdFile: taxIdFile,
+      binNumber: binNumber,
+      binFile: binFile,
       email: email,
       password: password,
     );

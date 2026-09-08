@@ -64,7 +64,8 @@
         "contact_person": "Tanvir Hasan",
         "phone": "+880 1711 987654",
         "trade_license": "TL-DH-2024-8891",
-        "tax_id": "TIN-9847291038"
+        "tax_id": "TIN-9847291038",
+        "bin_number": "BIN-008374921"
       }
     },
     {
@@ -91,7 +92,8 @@
         "contact_person": "Rezaul Karim",
         "phone": "+880 1819 123456",
         "trade_license": "TL-CTG-2023-4412",
-        "tax_id": "TIN-4820194821"
+        "tax_id": "TIN-4820194821",
+        "bin_number": "BIN-004928172"
       }
     },
     {
@@ -108,7 +110,8 @@
         "contact_person": "Nasir Uddin",
         "phone": "+880 1912 345678",
         "trade_license": "TL-DH-2024-9921",
-        "tax_id": "TIN-5529102931"
+        "tax_id": "TIN-5529102931",
+        "bin_number": "BIN-001928374"
       }
     }
   ]

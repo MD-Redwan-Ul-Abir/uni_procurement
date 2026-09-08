@@ -33,22 +33,33 @@ class _CircularListPageState extends State<CircularListPage> {
     final permission = Get.find<PermissionService>();
     final canCreate = permission.currentRole == UserRole.initiator ||
         permission.currentRole == UserRole.admin;
+    final isVendorOrGuest = permission.currentRole == UserRole.vendor ||
+        permission.currentRole == null;
+    final isGuest = permission.currentRole == null;
 
+    final selectedNavIndex = permission.currentRole == UserRole.vendor ? 1 : 1;
     final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
 
     return AdaptiveScaffold(
-      title: 'Procurement Circulars',
-      selectedIndex: 0,
+      title: isGuest ? 'Public Tenders Portal' : 'Active Procurement Circulars',
+      selectedIndex: selectedNavIndex,
       floatingActionButton: canCreate
           ? FloatingActionButton.extended(
-              onPressed: () => Get.toNamed('/circulars/create'),
+              onPressed: () => Get.toNamed('/initiator/circulars/new'),
               icon: const Icon(Icons.add),
               label: const Text('New Circular'),
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
             )
           : null,
       body: Obx(() {
         final query = _searchController.text.trim().toLowerCase();
         final filtered = db.circulars.where((c) {
+          final status = (c['status'] ?? '').toString().toUpperCase();
+
+          // Hide internal draft circulars from vendors and public guests
+          if (isVendorOrGuest && status == 'DRAFT') return false;
+
           final title = (c['title'] ?? '').toString().toLowerCase();
           final dept = (c['department'] ?? '').toString().toLowerCase();
           final id = (c['id'] ?? '').toString().toLowerCase();
@@ -57,7 +68,6 @@ class _CircularListPageState extends State<CircularListPage> {
               dept.contains(query) ||
               id.contains(query);
 
-          final status = (c['status'] ?? '').toString().toUpperCase();
           final matchesStatus = _selectedStatus == 'ALL' ||
               (_selectedStatus == 'PENDING' &&
                   (status.contains('PENDING') || status == 'EVALUATION')) ||
@@ -68,6 +78,86 @@ class _CircularListPageState extends State<CircularListPage> {
 
         return Column(
           children: [
+            if (isGuest)
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.primary.withValues(alpha: 0.08),
+                      AppColors.primaryDark.withValues(alpha: 0.12),
+                    ],
+                  ),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: AppColors.primary.withValues(alpha: 0.2),
+                    ),
+                  ),
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 16,
+                  runSpacing: 12,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: AppColors.primary.withValues(alpha: 0.15),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(Icons.info_outline,
+                              color: AppColors.primary, size: 20),
+                        ),
+                        const SizedBox(width: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Public Procurement Portal',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              'Browse open university circulars. Register as a vendor to submit quotations.',
+                              style: TextStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        OutlinedButton.icon(
+                          onPressed: () => Get.toNamed('/login'),
+                          icon: const Icon(Icons.login, size: 16),
+                          label: const Text('Sign In'),
+                        ),
+                        const SizedBox(width: 12),
+                        ElevatedButton.icon(
+                          onPressed: () => Get.toNamed('/vendor/register'),
+                          icon: const Icon(Icons.person_add, size: 16),
+                          label: const Text('Register as Vendor'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             // Filter / Search Toolbar
             Container(
               padding: const EdgeInsets.all(16),

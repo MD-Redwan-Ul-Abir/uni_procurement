@@ -29,10 +29,13 @@ class VendorRegisterController extends GetxController {
   final step2FormKey = GlobalKey<FormState>();
   final tradeLicenseNumberController = TextEditingController();
   final taxIdController = TextEditingController();
+  final binNumberController = TextEditingController();
   final Rxn<PlatformFile> tradeLicenseFile = Rxn<PlatformFile>();
   final Rxn<PlatformFile> taxIdFile = Rxn<PlatformFile>();
+  final Rxn<PlatformFile> binFile = Rxn<PlatformFile>();
   final tradeLicenseError = RxnString();
   final taxIdFileError = RxnString();
+  final binFileError = RxnString();
 
   // ── Step 3: Credentials ──
   final step3FormKey = GlobalKey<FormState>();
@@ -74,16 +77,22 @@ class VendorRegisterController extends GetxController {
   bool _validateStep2() {
     bool valid = step2FormKey.currentState?.validate() ?? false;
     if (tradeLicenseFile.value == null) {
-      tradeLicenseError.value = 'Trade license file is required';
+      tradeLicenseError.value = 'Trade license document is strictly mandatory';
       valid = false;
     } else {
       tradeLicenseError.value = null;
     }
     if (taxIdFile.value == null) {
-      taxIdFileError.value = 'Tax ID file is required';
+      taxIdFileError.value = 'TIN document is strictly mandatory';
       valid = false;
     } else {
       taxIdFileError.value = null;
+    }
+    if (binFile.value == null) {
+      binFileError.value = 'BIN document is strictly mandatory';
+      valid = false;
+    } else {
+      binFileError.value = null;
     }
     return valid;
   }
@@ -123,6 +132,23 @@ class VendorRegisterController extends GetxController {
     }
   }
 
+  Future<void> pickBinFile() async {
+    final files = await FilePicker.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png'],
+    );
+    if (files.isNotEmpty) {
+      final file = files.first;
+      final size = file.lengthSync() ?? await file.length();
+      if (size > AppConstants.maxUploadSizeBytes) {
+        binFileError.value = 'File must be less than 5MB';
+        return;
+      }
+      binFile.value = file;
+      binFileError.value = null;
+    }
+  }
+
   // ── Submit ──
   Future<void> submit() async {
     isLoading.value = true;
@@ -134,6 +160,9 @@ class VendorRegisterController extends GetxController {
     final taxBytes = taxIdFile.value != null
         ? await taxIdFile.value!.readAsBytes()
         : null;
+    final binBytes = binFile.value != null
+        ? await binFile.value!.readAsBytes()
+        : null;
 
     final result = await _registerUseCase(
       companyName: companyNameController.text.trim(),
@@ -144,6 +173,8 @@ class VendorRegisterController extends GetxController {
       tradeLicenseFile: tlBytes,
       taxId: taxIdController.text.trim(),
       taxIdFile: taxBytes,
+      binNumber: binNumberController.text.trim(),
+      binFile: binBytes,
       email: emailController.text.trim(),
       password: passwordController.text,
     );
@@ -177,6 +208,7 @@ class VendorRegisterController extends GetxController {
     phoneController.dispose();
     tradeLicenseNumberController.dispose();
     taxIdController.dispose();
+    binNumberController.dispose();
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();

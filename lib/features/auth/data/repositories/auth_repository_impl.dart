@@ -40,6 +40,8 @@ class AuthRepositoryImpl implements AuthRepository {
     required dynamic tradeLicenseFile,
     required String taxId,
     required dynamic taxIdFile,
+    required String binNumber,
+    required dynamic binFile,
     required String email,
     required String password,
   }) async {
@@ -53,6 +55,8 @@ class AuthRepositoryImpl implements AuthRepository {
         tradeLicenseFile: tradeLicenseFile,
         taxId: taxId,
         taxIdFile: taxIdFile,
+        binNumber: binNumber,
+        binFile: binFile,
         email: email,
         password: password,
       );

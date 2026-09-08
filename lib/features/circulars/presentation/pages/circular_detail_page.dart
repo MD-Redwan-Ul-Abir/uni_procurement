@@ -38,6 +38,9 @@ class CircularDetailPage extends StatelessWidget {
     final statusStr = circular['status'] as String? ?? 'DRAFT';
     final statusEnum = CircularStatus.fromString(statusStr);
     final isVendor = permission.currentRole == UserRole.vendor;
+    final isInitiatorOrAdmin = permission.currentRole == UserRole.initiator ||
+        permission.currentRole == UserRole.admin;
+    final isGuest = permission.currentRole == null;
 
     final items = (detail?['items'] as List?)?.cast<Map<String, dynamic>>() ?? [];
     final eligibility = (detail?['eligibility_criteria'] as List?)?.cast<String>() ?? [];
@@ -282,25 +285,47 @@ class CircularDetailPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        AppButton(
-                          label: 'Track Approval Workflow',
-                          icon: Icons.track_changes_outlined,
-                          isOutlined: true,
-                          onPressed: () => Get.toNamed('/approvals/tracker?id=${circular['id']}'),
-                        ),
-                        const SizedBox(width: 12),
-                        AppButton(
-                          label: 'Comparison Matrix',
-                          icon: Icons.analytics_outlined,
-                          isOutlined: true,
-                          onPressed: () => Get.toNamed('/comparison-matrix?id=${circular['id']}'),
-                        ),
-                        if (isVendor) ...[
+                        if (isInitiatorOrAdmin) ...[
+                          AppButton(
+                            label: 'Track Approval Workflow',
+                            icon: Icons.track_changes_outlined,
+                            isOutlined: true,
+                            onPressed: () => Get.toNamed(
+                                '/approvals/tracker/${circular['id']}'),
+                          ),
                           const SizedBox(width: 12),
                           AppButton(
-                            label: 'Submit Bid',
+                            label: 'Comparison Matrix',
+                            icon: Icons.analytics_outlined,
+                            isOutlined: true,
+                            onPressed: () => Get.toNamed(
+                                '/circulars/${circular['id']}/matrix'),
+                          ),
+                        ],
+                        if (isVendor) ...[
+                          AppButton(
+                            label: 'Submit Bid / Quotation',
                             icon: Icons.gavel_outlined,
-                            onPressed: () => Get.toNamed('/bids/submit?circularId=${circular['id']}'),
+                            onPressed: () => Get.toNamed(
+                                '/circulars/${circular['id']}/bid'),
+                          ),
+                        ],
+                        if (isGuest) ...[
+                          OutlinedButton.icon(
+                            onPressed: () => Get.toNamed(
+                                '/login?redirect=/circulars/${circular['id']}/bid'),
+                            icon: const Icon(Icons.login, size: 16),
+                            label: const Text('Sign In to Bid'),
+                          ),
+                          const SizedBox(width: 12),
+                          ElevatedButton.icon(
+                            onPressed: () => Get.toNamed('/vendor/register'),
+                            icon: const Icon(Icons.person_add, size: 16),
+                            label: const Text('Register as Vendor'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              foregroundColor: Colors.white,
+                            ),
                           ),
                         ],
                       ],

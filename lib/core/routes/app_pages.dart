@@ -35,6 +35,12 @@ import '../../features/work_orders/presentation/bindings/work_order_binding.dart
 import '../../features/work_orders/presentation/pages/invoice_upload_page.dart';
 import '../../features/work_orders/presentation/pages/work_order_detail_page.dart';
 import '../../features/work_orders/presentation/pages/work_order_list_page.dart';
+import '../../features/bidding/presentation/pages/vendor_circular_detail_page.dart';
+import '../../features/bidding/presentation/pages/vendor_circular_list_page.dart';
+import '../../features/bidding/presentation/pages/vendor_dashboard_page.dart';
+import '../../features/circulars/presentation/pages/initiator_dashboard_page.dart';
+import '../../features/circulars/presentation/pages/initiator_history_page.dart';
+import '../constants/app_enums.dart';
 import 'app_routes.dart';
 import 'auth_guard.dart';
 
@@ -106,38 +112,84 @@ class AppPages {
       middlewares: [AuthGuard()],
     ),
 
-    // ── Circulars ──
+    // ── Initiator ──
+    GetPage(
+      name: AppRoutes.initiatorDashboard,
+      page: () => const InitiatorDashboardPage(),
+      binding: CircularBinding(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.initiator])],
+    ),
+    GetPage(
+      name: AppRoutes.initiatorNewCircular,
+      page: () => const CreateCircularPage(),
+      binding: CircularBinding(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.initiator])],
+    ),
+    GetPage(
+      name: AppRoutes.initiatorHistory,
+      page: () => const InitiatorHistoryPage(),
+      binding: CircularBinding(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.initiator])],
+    ),
+
+    // ── Circulars (Public Portal / Initiator / Admin) ──
     GetPage(
       name: AppRoutes.circulars,
       page: () => const CircularListPage(),
       binding: CircularBinding(),
-      middlewares: [AuthGuard()],
+      // Publicly viewable by guest users and vendors
     ),
     GetPage(
       name: AppRoutes.circularCreate,
       page: () => const CreateCircularPage(),
       binding: CircularBinding(),
-      middlewares: [AuthGuard()],
+      middlewares: [AuthGuard(), RoleGuard([UserRole.initiator])],
     ),
     GetPage(
       name: AppRoutes.circularDetail,
       page: () => const CircularDetailPage(),
       binding: CircularBinding(),
-      middlewares: [AuthGuard()],
+      // Publicly viewable circular details
     ),
 
-    // ── Bidding ──
+    // ── Vendor ──
+    GetPage(
+      name: AppRoutes.vendorDashboard,
+      page: () => const VendorDashboardPage(),
+      binding: BidBinding(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.vendor])],
+    ),
+    GetPage(
+      name: AppRoutes.vendorCirculars,
+      page: () => const VendorCircularListPage(),
+      binding: BidBinding(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.vendor])],
+    ),
+    GetPage(
+      name: AppRoutes.vendorCircularDetail,
+      page: () => const VendorCircularDetailPage(),
+      binding: BidBinding(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.vendor])],
+    ),
+    GetPage(
+      name: AppRoutes.vendorMyBids,
+      page: () => const MyBidsPage(),
+      binding: BidBinding(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.vendor])],
+    ),
+
+    // ── Bidding (Vendor) ──
     GetPage(
       name: AppRoutes.bidSubmit,
       page: () => const BidSubmissionPage(),
       binding: BidBinding(),
-      middlewares: [AuthGuard()],
+      middlewares: [AuthGuard(), RoleGuard([UserRole.vendor])],
     ),
     GetPage(
       name: AppRoutes.myBids,
       page: () => const MyBidsPage(),
       binding: BidBinding(),
-      middlewares: [AuthGuard()],
+      middlewares: [AuthGuard(), RoleGuard([UserRole.vendor])],
     ),
 
     // ── Comparison Matrix ──

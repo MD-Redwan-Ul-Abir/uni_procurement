@@ -23,26 +23,42 @@ class PermissionService extends GetxService {
   // ── Route Access ──
 
   /// Map of which roles can access which route prefixes.
+  /// Order matters — more specific prefixes must come before broader ones.
   static const Map<String, List<UserRole>> _routePermissions = {
-    '/admin': [UserRole.admin],
+    // Initiator-only routes
+    '/initiator': [UserRole.initiator],
     '/circulars/create': [UserRole.initiator],
+
+    // Vendor-only routes
+    '/vendor': [UserRole.vendor],
+    '/bids': [UserRole.vendor],
+
+    // Admin routes
+    '/admin': [UserRole.admin],
+
+    // Approval routes
     '/approvals': [
       UserRole.approverDeptHead,
       UserRole.approverDean,
       UserRole.approverRegistrar,
       UserRole.initiator,
     ],
+
+    // Finance routes
     '/finance': [UserRole.finance],
+
+    // Work orders (Vendor fulfills, Finance oversees)
     '/work-orders': [UserRole.vendor, UserRole.finance],
-    '/circulars': [
-      UserRole.initiator,
-      UserRole.vendor,
-      UserRole.admin,
-    ],
   };
 
   /// Check if the current user can access a route.
   bool canAccess(String routeName) {
+    // Public routes accessible without login
+    if (routeName == '/circulars' ||
+        routeName.startsWith('/circulars/') && !routeName.endsWith('/bid') && !routeName.endsWith('/create') && !routeName.endsWith('/matrix')) {
+      return true;
+    }
+
     final role = currentRole;
     if (role == null) return false;
 
@@ -64,7 +80,25 @@ class PermissionService extends GetxService {
 
   List<NavItem> get navItemsForCurrentUser {
     final role = currentRole;
-    if (role == null) return [];
+    if (role == null) {
+      return const [
+        NavItem(
+          label: 'Active Circulars',
+          icon: Icons.campaign_outlined,
+          route: '/circulars',
+        ),
+        NavItem(
+          label: 'Sign In',
+          icon: Icons.login_outlined,
+          route: '/login',
+        ),
+        NavItem(
+          label: 'Register as Vendor',
+          icon: Icons.person_add_outlined,
+          route: '/vendor/register',
+        ),
+      ];
+    }
 
     switch (role) {
       case UserRole.admin:
@@ -93,17 +127,25 @@ class PermissionService extends GetxService {
       case UserRole.initiator:
         return const [
           NavItem(
-              label: 'My Circulars',
+              label: 'Dashboard',
+              icon: Icons.dashboard_outlined,
+              route: '/initiator/dashboard'),
+          NavItem(
+              label: 'Active Tenders',
               icon: Icons.description_outlined,
               route: '/circulars'),
           NavItem(
               label: 'Create Circular',
               icon: Icons.add_circle_outline,
-              route: '/circulars/create'),
+              route: '/initiator/circulars/new'),
           NavItem(
               label: 'Approval Tracker',
               icon: Icons.track_changes_outlined,
-              route: '/approvals/tracker'),
+              route: '/approvals'),
+          NavItem(
+              label: 'Completed Projects',
+              icon: Icons.history_outlined,
+              route: '/initiator/history'),
         ];
       case UserRole.approverDeptHead:
       case UserRole.approverDean:
@@ -121,21 +163,21 @@ class PermissionService extends GetxService {
       case UserRole.vendor:
         return const [
           NavItem(
+              label: 'Dashboard',
+              icon: Icons.dashboard_outlined,
+              route: '/vendor/dashboard'),
+          NavItem(
               label: 'Active Circulars',
               icon: Icons.campaign_outlined,
               route: '/circulars'),
           NavItem(
               label: 'My Bids',
               icon: Icons.gavel_outlined,
-              route: '/bids'),
+              route: '/vendor/my-bids'),
           NavItem(
               label: 'My Work Orders',
               icon: Icons.assignment_outlined,
               route: '/work-orders'),
-          NavItem(
-              label: 'Invoices',
-              icon: Icons.receipt_long_outlined,
-              route: '/invoices'),
         ];
       case UserRole.finance:
         return const [
@@ -166,13 +208,13 @@ class PermissionService extends GetxService {
       case UserRole.admin:
         return '/admin/reports';
       case UserRole.initiator:
-        return '/circulars';
+        return '/initiator/dashboard';
       case UserRole.approverDeptHead:
       case UserRole.approverDean:
       case UserRole.approverRegistrar:
         return '/approvals';
       case UserRole.vendor:
-        return '/circulars';
+        return '/vendor/dashboard';
       case UserRole.finance:
         return '/finance';
       case null:
@@ -188,3 +230,4 @@ class PermissionService extends GetxService {
     Get.offAllNamed('/login');
   }
 }
+

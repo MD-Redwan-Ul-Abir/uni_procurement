@@ -50,13 +50,52 @@ class AuthRemoteDatasource {
     required dynamic tradeLicenseFile,
     required String taxId,
     required dynamic taxIdFile,
+    required String binNumber,
+    required dynamic binFile,
     required String email,
     required String password,
   }) async {
+    // Database & API level validation: TIN, BIN, and Trade License are strictly mandatory
+    if (tradeLicenseFile == null ||
+        (tradeLicenseFile is String && tradeLicenseFile.trim().isEmpty)) {
+      throw ValidationException(
+        'Trade License document is strictly mandatory.',
+        fieldErrors: {
+          'trade_license': ['Trade License document is required.']
+        },
+      );
+    }
+    if (taxIdFile == null ||
+        (taxIdFile is String && taxIdFile.trim().isEmpty)) {
+      throw ValidationException(
+        'TIN (Tax Identification Number) document is strictly mandatory.',
+        fieldErrors: {
+          'tin_document': ['TIN document is required.']
+        },
+      );
+    }
+    if (binFile == null ||
+        (binFile is String && binFile.trim().isEmpty)) {
+      throw ValidationException(
+        'BIN (Business Identification Number) document is strictly mandatory.',
+        fieldErrors: {
+          'bin_document': ['BIN document is required.']
+        },
+      );
+    }
+
     if (Get.isRegistered<DummyDatabaseService>()) {
       final dummyDb = Get.find<DummyDatabaseService>();
-      final tlName = tradeLicenseFile is String ? tradeLicenseFile.split('/').last.split('\\').last : 'TradeLicense.pdf';
-      final tinName = taxIdFile is String ? taxIdFile.split('/').last.split('\\').last : 'TaxCert.pdf';
+      final tlName = tradeLicenseFile is String
+          ? tradeLicenseFile.split('/').last.split('\\').last
+          : 'TradeLicense.pdf';
+      final tinName = taxIdFile is String
+          ? taxIdFile.split('/').last.split('\\').last
+          : 'TaxCert.pdf';
+      final binName = binFile is String
+          ? binFile.split('/').last.split('\\').last
+          : 'BinCert.pdf';
+
       dummyDb.vendorVerifications.insert(0, {
         'id': DateTime.now().millisecondsSinceEpoch % 10000,
         'company_name': companyName,
@@ -68,9 +107,11 @@ class AuthRemoteDatasource {
         'trade_license_file': tlName,
         'tax_id': taxId,
         'tax_id_file': tinName,
+        'bin_number': binNumber,
+        'bin_file': binName,
         'registration_date': DateTime.now().toString().split(' ').first,
         'status': 'PENDING',
-        'notes': 'Online registration submitted via vendor sign up portal.'
+        'notes': 'Online registration submitted with Trade License, TIN, and BIN documents.'
       });
       return;
     }
@@ -89,6 +130,10 @@ class AuthRemoteDatasource {
         'tax_id_file': taxIdFile is String
             ? await MultipartFile.fromFile(taxIdFile)
             : taxIdFile,
+        'bin_number': binNumber,
+        'bin_file': binFile is String
+            ? await MultipartFile.fromFile(binFile)
+            : binFile,
         'email': email,
         'password': password,
         'password_confirmation': password,

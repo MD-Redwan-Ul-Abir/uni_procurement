@@ -16,6 +16,8 @@ abstract class AuthRepository {
     required dynamic tradeLicenseFile,
     required String taxId,
     required dynamic taxIdFile,
+    required String binNumber,
+    required dynamic binFile,
     required String email,
     required String password,
   });
