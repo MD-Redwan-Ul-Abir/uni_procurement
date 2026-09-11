@@ -47,6 +47,9 @@ class PermissionService extends GetxService {
     // Finance routes
     '/finance': [UserRole.finance],
 
+    // Procurement Committee routes
+    '/committee': [UserRole.procurementCommittee, UserRole.admin],
+
     // Work orders (Vendor fulfills, Finance oversees)
     '/work-orders': [UserRole.vendor, UserRole.finance],
   };
@@ -198,6 +201,21 @@ class PermissionService extends GetxService {
               icon: Icons.assignment_outlined,
               route: '/work-orders'),
         ];
+      case UserRole.procurementCommittee:
+        return const [
+          NavItem(
+              label: 'Evaluation Radar',
+              icon: Icons.rate_review_outlined,
+              route: '/committee/dashboard'),
+          NavItem(
+              label: 'Active Circulars',
+              icon: Icons.description_outlined,
+              route: '/circulars'),
+          NavItem(
+              label: 'Evaluation History',
+              icon: Icons.fact_check_outlined,
+              route: '/committee/history'),
+        ];
     }
   }
 
@@ -217,6 +235,8 @@ class PermissionService extends GetxService {
         return '/vendor/dashboard';
       case UserRole.finance:
         return '/finance';
+      case UserRole.procurementCommittee:
+        return '/committee/dashboard';
       case null:
         return '/login';
     }

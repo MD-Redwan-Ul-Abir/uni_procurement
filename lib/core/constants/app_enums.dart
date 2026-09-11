@@ -6,7 +6,8 @@ enum UserRole {
   approverDean,
   approverRegistrar,
   vendor,
-  finance;
+  finance,
+  procurementCommittee;
 
   String get label {
     switch (this) {
@@ -24,12 +25,14 @@ enum UserRole {
         return 'Vendor';
       case UserRole.finance:
         return 'Finance';
+      case UserRole.procurementCommittee:
+        return 'Procurement Committee';
     }
   }
 
   /// Parse from backend snake_case string.
   static UserRole fromString(String value) {
-    switch (value) {
+    switch (value.toLowerCase()) {
       case 'admin':
         return UserRole.admin;
       case 'initiator':
@@ -44,6 +47,9 @@ enum UserRole {
         return UserRole.vendor;
       case 'finance':
         return UserRole.finance;
+      case 'procurement_committee':
+      case 'committee':
+        return UserRole.procurementCommittee;
       default:
         throw ArgumentError('Unknown role: $value');
     }
@@ -66,6 +72,8 @@ enum UserRole {
         return 'vendor';
       case UserRole.finance:
         return 'finance';
+      case UserRole.procurementCommittee:
+        return 'procurement_committee';
     }
   }
 

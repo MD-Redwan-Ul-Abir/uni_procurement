@@ -1026,6 +1026,8 @@ class _LoginForm extends StatelessWidget {
                             controller, 'Vendor', 'vendor@apextech.com'),
                         _demoChip(
                             controller, 'Finance', 'finance@university.edu'),
+                        _demoChip(
+                            controller, 'Committee', 'committee@university.edu'),
                       ],
                     ),
                   ],

@@ -33,6 +33,7 @@ class _ApprovalReviewPageState extends State<ApprovalReviewPage> {
 
     setState(() => _isLoading = true);
     await Future.delayed(const Duration(milliseconds: 500));
+    if (!mounted) return;
 
     final approverRole = permission.currentRole?.label ?? 'Approver';
     final user = permission.currentRole != null
@@ -88,6 +89,7 @@ class _ApprovalReviewPageState extends State<ApprovalReviewPage> {
 
     final prevRemarks = (req['previous_remarks'] as List?)?.cast<Map<String, dynamic>>() ?? [];
     final amount = (req['requested_amount'] as num?)?.toDouble() ?? 0.0;
+    final committeeEval = db.getCommitteeEvaluationForCircular(req['circular_id'] as String? ?? '');
 
     return Scaffold(
       appBar: AppBar(
@@ -161,6 +163,102 @@ class _ApprovalReviewPageState extends State<ApprovalReviewPage> {
                 ),
 
                 const SizedBox(height: 24),
+
+                // Consolidated Committee Suggestion (Section 3.3 & 3.4)
+                if (committeeEval != null && committeeEval['is_consensus_reached'] == true) ...[
+                  Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: const BorderSide(color: AppColors.success, width: 1.5),
+                    ),
+                    color: AppColors.success.withValues(alpha: 0.04),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.gavel_rounded, color: AppColors.success, size: 22),
+                              const SizedBox(width: 8),
+                              const Text(
+                                'Consolidated Committee Suggestion',
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xFF065F46)),
+                              ),
+                              const Spacer(),
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                decoration: BoxDecoration(
+                                  color: AppColors.success.withValues(alpha: 0.15),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: const Text(
+                                  '100% Consensus',
+                                  style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Color(0xFF047857)),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Recommended Bidder: ${committeeEval['consolidated_vendor_name'] ?? 'Vendor'}',
+                            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Color(0xFF0F172A)),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            committeeEval['consolidated_summary'] ?? 'Evaluation complete.',
+                            style: const TextStyle(fontSize: 13, height: 1.4, color: AppColors.textSecondary),
+                          ),
+                          const SizedBox(height: 12),
+                          const Divider(height: 1),
+                          const SizedBox(height: 12),
+                          const Text(
+                            'Committee Members Immutable Votes & Comments:',
+                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                          ),
+                          const SizedBox(height: 8),
+                          ...((committeeEval['members'] as List?)?.cast<Map<String, dynamic>>() ?? []).map((m) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 6),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Icon(Icons.check, size: 14, color: AppColors.success),
+                                  const SizedBox(width: 6),
+                                  Expanded(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: const TextStyle(fontSize: 12, color: AppColors.textSecondary, height: 1.3),
+                                        children: [
+                                          TextSpan(
+                                            text: '${m['name']}: ',
+                                            style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                                          ),
+                                          TextSpan(text: '"${m['justification'] ?? 'Endorsed'}"'),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                          const SizedBox(height: 10),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton.icon(
+                              onPressed: () => Get.toNamed('/circulars/${req['circular_id']}/matrix'),
+                              icon: const Icon(Icons.analytics_outlined, size: 16),
+                              label: const Text('Open QCBS Comparison Sheet'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                ],
 
                 // Previous Tier Approvals & Remarks
                 if (prevRemarks.isNotEmpty) ...[

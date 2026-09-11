@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 /// Central in-memory reactive database populated from JSON files in assets/dummy_database/
 /// Allows live showcases, interactive state changes, and zero-backend demonstrations.
@@ -23,13 +24,16 @@ class DummyDatabaseService extends GetxService {
   final RxList<Map<String, dynamic>> vendorVerifications = <Map<String, dynamic>>[].obs;
   final RxMap<String, dynamic> workflowSettings = <String, dynamic>{}.obs;
   final RxMap<String, dynamic> adminReports = <String, dynamic>{}.obs;
+  final RxList<Map<String, dynamic>> committeeEvaluations = <Map<String, dynamic>>[].obs;
 
   Future<DummyDatabaseService> init() async {
     try {
       await _loadAllData();
+      _initCommitteeEvaluations();
       isLoaded.value = true;
     } catch (e) {
       // Fallback: load hardcoded baseline if asset bundle is not yet mounted in test runner
+      _initCommitteeEvaluations();
       isLoaded.value = true;
     }
     return this;
@@ -283,5 +287,214 @@ class DummyDatabaseService extends GetxService {
       }
       vendorVerifications[index] = updated;
     }
+  }
+
+  // ── Committee Evaluation Operations ──
+
+  void _initCommitteeEvaluations() {
+    if (committeeEvaluations.isNotEmpty) return;
+    committeeEvaluations.assignAll([
+      {
+        'circular_id': 'CIRC-2026-003',
+        'circular_title': 'Campus-Wide Optical Fiber & 10G Switch Upgrade',
+        'department': 'IT & Networking Division',
+        'budget': 190000.0,
+        'evaluation_date': '2026-03-14',
+        'committee_head': 'Prof. Dr. Zahirul Islam',
+        'total_members': 3,
+        'is_consensus_reached': false,
+        'status': 'IN_PROGRESS',
+        'members': [
+          {
+            'name': 'Prof. Dr. Zahirul Islam',
+            'email': 'committee@university.edu',
+            'designation': 'Committee Chair (Dept of CSE)',
+            'has_voted': false,
+            'voted_vendor_id': null,
+            'voted_vendor_name': null,
+            'justification': null,
+            'voted_at': null,
+          },
+          {
+            'name': 'Dr. Farhana Yasmin',
+            'email': 'committee2@university.edu',
+            'designation': 'External Technical Expert (EEE)',
+            'has_voted': true,
+            'voted_vendor_id': 6,
+            'voted_vendor_name': 'Apex Technologies Ltd',
+            'justification': 'Fully complies with ITU-T G.652.D optical fiber standards and includes Tier 1 Cisco Gold partner warranties.',
+            'voted_at': '2026-03-14 10:30 AM',
+          },
+          {
+            'name': 'Engr. Monirul Haque',
+            'email': 'committee3@university.edu',
+            'designation': 'Chief IT Infrastructure Officer',
+            'has_voted': true,
+            'voted_vendor_id': 6,
+            'voted_vendor_name': 'Apex Technologies Ltd',
+            'justification': 'Lowest responsive financial quotation with verified 10-Gigabit Layer 3 wire-speed forwarding capacity.',
+            'voted_at': '2026-03-14 11:45 AM',
+          },
+        ],
+      },
+      {
+        'circular_id': 'CIRC-2026-001',
+        'circular_title': 'High-Performance Computing Cluster for AI Lab',
+        'department': 'Computer Science & Engineering',
+        'budget': 85000.0,
+        'evaluation_date': '2026-02-18',
+        'committee_head': 'Prof. Tariq Rahman',
+        'total_members': 3,
+        'is_consensus_reached': true,
+        'status': 'COMPLETED',
+        'completed_at': '2026-02-18 04:00 PM',
+        'consolidated_vendor_id': 6,
+        'consolidated_vendor_name': 'Apex Technologies Ltd',
+        'consolidated_summary': 'Unanimously recommended Apex Technologies Ltd (3/3 votes) for lowest responsive offer and Tier 1 OEM authorization.',
+        'members': [
+          {
+            'name': 'Prof. Tariq Rahman',
+            'email': 'depthead@university.edu',
+            'designation': 'Head of Department (CSE)',
+            'has_voted': true,
+            'voted_vendor_id': 6,
+            'voted_vendor_name': 'Apex Technologies Ltd',
+            'justification': '100% compliant with Nvidia Ada Lovelace architecture specifications.',
+            'voted_at': '2026-02-18 02:15 PM',
+          },
+          {
+            'name': 'Dr. Sarah Ahmed',
+            'email': 'initiator@university.edu',
+            'designation': 'Project Initiator & Associate Professor',
+            'has_voted': true,
+            'voted_vendor_id': 6,
+            'voted_vendor_name': 'Apex Technologies Ltd',
+            'justification': 'Within approved research grant envelope with 3-year 24/7 on-site SLA.',
+            'voted_at': '2026-02-18 02:40 PM',
+          },
+          {
+            'name': 'Prof. Kamal Hossain',
+            'email': 'dean@university.edu',
+            'designation': 'Dean, Faculty of Engineering',
+            'has_voted': true,
+            'voted_vendor_id': 6,
+            'voted_vendor_name': 'Apex Technologies Ltd',
+            'justification': 'Highest composite QCBS score (97.2%). Fully sanctioned.',
+            'voted_at': '2026-02-18 03:50 PM',
+          },
+        ],
+      },
+    ]);
+  }
+
+  Map<String, dynamic>? getCommitteeEvaluationForCircular(String circularId) {
+    return committeeEvaluations.firstWhereOrNull((e) => e['circular_id'] == circularId);
+  }
+
+  bool submitCommitteeMemberReview({
+    required String circularId,
+    required String memberEmail,
+    required int selectedVendorId,
+    required String selectedVendorName,
+    required String justification,
+  }) {
+    final index = committeeEvaluations.indexWhere((e) => e['circular_id'] == circularId);
+    if (index == -1) return false;
+
+    final eval = Map<String, dynamic>.from(committeeEvaluations[index]);
+    final members = (eval['members'] as List).map((m) => Map<String, dynamic>.from(m as Map)).toList();
+
+    final mIndex = members.indexWhere((m) => m['email'].toString().toLowerCase() == memberEmail.trim().toLowerCase());
+    if (mIndex == -1) return false;
+
+    // Rule: Mandatory & Immutable Justification — once submitted, locked and cannot be modified.
+    if (members[mIndex]['has_voted'] == true) {
+      return false; // Already locked
+    }
+
+    final nowStr = DateFormat('yyyy-MM-dd hh:mm a').format(DateTime.now());
+    members[mIndex]['has_voted'] = true;
+    members[mIndex]['voted_vendor_id'] = selectedVendorId;
+    members[mIndex]['voted_vendor_name'] = selectedVendorName;
+    members[mIndex]['justification'] = justification.trim();
+    members[mIndex]['voted_at'] = nowStr;
+
+    eval['members'] = members;
+
+    // Check if 100% of committee members have submitted
+    final votedCount = members.where((m) => m['has_voted'] == true).length;
+    final totalMembers = eval['total_members'] as int? ?? members.length;
+
+    if (votedCount >= totalMembers) {
+      eval['is_consensus_reached'] = true;
+      eval['status'] = 'COMPLETED';
+      eval['completed_at'] = nowStr;
+
+      // Determine winning vendor by vote counts
+      final voteCounts = <int, int>{};
+      final vendorNames = <int, String>{};
+      for (final m in members) {
+        final vId = m['voted_vendor_id'] as int?;
+        if (vId != null) {
+          voteCounts[vId] = (voteCounts[vId] ?? 0) + 1;
+          vendorNames[vId] = m['voted_vendor_name'] as String? ?? 'Vendor #$vId';
+        }
+      }
+      int winningVendorId = selectedVendorId;
+      int maxVotes = 0;
+      voteCounts.forEach((vId, count) {
+        if (count > maxVotes) {
+          maxVotes = count;
+          winningVendorId = vId;
+        }
+      });
+      eval['consolidated_vendor_id'] = winningVendorId;
+      final winningName = vendorNames[winningVendorId] ?? selectedVendorName;
+      eval['consolidated_vendor_name'] = winningName;
+      eval['consolidated_summary'] =
+          'Consolidated Procurement Committee consensus: Recommended $winningName with $maxVotes of $totalMembers votes based on QCBS technical compliance and commercial competitiveness.';
+
+      // Automated Workflow Progression: Push to Tier 1 Executive Approval Pipeline (Dept Head)
+      final circIndex = circulars.indexWhere((c) => c['id'] == circularId);
+      if (circIndex != -1) {
+        final circ = Map<String, dynamic>.from(circulars[circIndex]);
+        circ['status'] = 'PENDING_DEPT_HEAD';
+        circulars[circIndex] = circ;
+
+        // Create pending approval item for Tier 1 Department Head
+        final approvalId = 'APP-${DateTime.now().millisecondsSinceEpoch.toString().substring(6)}';
+        pendingApprovals.insert(0, {
+          'id': approvalId,
+          'circular_id': circularId,
+          'title': circ['title'],
+          'department': circ['department'],
+          'initiator': circ['initiator_name'] ?? 'Procurement Initiator',
+          'requested_amount': circ['estimated_budget'] ?? 190000.0,
+          'current_stage': 'Department Head',
+          'required_role': 'approver_dept_head',
+          'submitted_date': DateTime.now().toString().split(' ').first,
+          'status': 'PENDING_DEPT_HEAD',
+          'summary': 'Tender evaluated by Procurement Committee ($totalMembers members). Recommending award to $winningName ($maxVotes/$totalMembers votes). Forwarded for Tier 1 Department Head review.',
+          'attachments': ['Procurement_Committee_Minutes.pdf', 'Comparison_Sheet_QCBS.pdf'],
+          'committee_consensus': {
+            'consensus_vendor': winningName,
+            'votes': '$maxVotes / $totalMembers',
+            'summary': eval['consolidated_summary'],
+            'member_remarks': members.map((m) => {
+              'member_name': m['name'],
+              'designation': m['designation'],
+              'voted_vendor': m['voted_vendor_name'],
+              'comment': m['justification'],
+              'date': m['voted_at'],
+            }).toList(),
+          },
+          'previous_remarks': [],
+        });
+      }
+    }
+
+    committeeEvaluations[index] = eval;
+    committeeEvaluations.refresh();
+    return true;
   }
 }

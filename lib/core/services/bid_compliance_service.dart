@@ -117,7 +117,8 @@ class BidComplianceService {
         role == UserRole.approverDeptHead ||
         role == UserRole.approverDean ||
         role == UserRole.approverRegistrar ||
-        role == UserRole.finance;
+        role == UserRole.finance ||
+        role == UserRole.procurementCommittee;
 
     return isAuthorizedStaff;
   }

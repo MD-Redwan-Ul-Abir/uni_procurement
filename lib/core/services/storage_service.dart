@@ -9,24 +9,24 @@ import '../constants/app_constants.dart';
 /// Handles token persistence and multi-tab session consistency
 /// via browser storage events.
 class StorageService extends GetxService {
-  late final GetStorage _box;
+  GetStorage? _box;
 
   Future<StorageService> init() async {
     _box = GetStorage();
-    await _box.initStorage;
+    await _box?.initStorage;
     return this;
   }
 
   // ── Token ──
 
-  String? get token => _box.read<String>(AppConstants.tokenKey);
+  String? get token => _box?.read<String>(AppConstants.tokenKey);
 
   Future<void> saveToken(String token) async {
-    await _box.write(AppConstants.tokenKey, token);
+    await _box?.write(AppConstants.tokenKey, token);
   }
 
   Future<void> removeToken() async {
-    await _box.remove(AppConstants.tokenKey);
+    await _box?.remove(AppConstants.tokenKey);
   }
 
   bool get hasToken => token != null && token!.isNotEmpty;
@@ -34,7 +34,8 @@ class StorageService extends GetxService {
   // ── Cached User ──
 
   Map<String, dynamic>? get cachedUser {
-    final raw = _box.read(AppConstants.userKey);
+    if (_box == null) return null;
+    final raw = _box!.read(AppConstants.userKey);
     if (raw == null) return null;
     if (raw is Map) return Map<String, dynamic>.from(raw);
     if (raw is String) {
@@ -48,19 +49,21 @@ class StorageService extends GetxService {
   }
 
   Future<void> cacheUser(Map<String, dynamic> userJson) async {
-    await _box.write(AppConstants.userKey, jsonEncode(userJson));
+    await _box?.write(AppConstants.userKey, jsonEncode(userJson));
   }
+
+  String? get userEmail => cachedUser?['email'] as String?;
 
   // ── Session ──
 
   Future<void> clearSession() async {
-    await _box.remove(AppConstants.tokenKey);
-    await _box.remove(AppConstants.userKey);
+    await _box?.remove(AppConstants.tokenKey);
+    await _box?.remove(AppConstants.userKey);
   }
 
   /// Listen for storage changes from other tabs (multi-tab logout).
   void listenForSessionChanges(void Function() onSessionCleared) {
-    _box.listenKey(AppConstants.tokenKey, (value) {
+    _box?.listenKey(AppConstants.tokenKey, (value) {
       if (value == null || (value is String && value.isEmpty)) {
         onSessionCleared();
       }

@@ -55,5 +55,10 @@ class AppRoutes {
   static const String financeInvoices = '/finance/invoices';
   static const String financeCompleted = '/finance/completed';
   static const String financeReview = '/finance/review/:id';
+
+  // ── Procurement Committee Module ──
+  static const String committeeDashboard = '/committee/dashboard';
+  static const String committeeEvaluation = '/committee/evaluation/:id';
+  static const String committeeHistory = '/committee/history';
 }
 

@@ -69,6 +69,93 @@
           }
         }
       ]
+    },
+    {
+      "circular_id": "CIRC-2026-003",
+      "circular_title": "Campus-Wide Optical Fiber & 10G Switch Upgrade",
+      "department": "IT & Networking Division",
+      "budget": 190000.0,
+      "evaluation_date": "2026-03-14",
+      "committee_head": "Prof. Dr. Zahirul Islam",
+      "committee_members": [
+        {
+          "name": "Prof. Dr. Zahirul Islam",
+          "email": "committee@university.edu",
+          "designation": "Committee Chair (Dept of CSE)"
+        },
+        {
+          "name": "Dr. Farhana Yasmin",
+          "email": "committee2@university.edu",
+          "designation": "External Technical Expert (EEE)"
+        },
+        {
+          "name": "Engr. Monirul Haque",
+          "email": "committee3@university.edu",
+          "designation": "Chief IT Infrastructure Officer"
+        }
+      ],
+      "vendors": [
+        {
+          "vendor_id": 6,
+          "vendor_name": "Apex Technologies Ltd",
+          "quoted_amount": 182000.0,
+          "difference_from_budget": -8000.0,
+          "delivery_timeline": "75 Days",
+          "warranty": "5 Years Comprehensive Care",
+          "technical_compliance": "100% Compliant (Corning SMF-28e+ & Cisco Catalyst 9500)",
+          "technical_score": 94.0,
+          "financial_score": 95.8,
+          "composite_score": 94.9,
+          "rank": 1,
+          "status": "Recommended Winner",
+          "criteria_breakdown": {
+            "oem_authorization": "Yes (Cisco Gold Partner)",
+            "fiber_standards": "ITU-T G.652.D Compliant",
+            "switch_throughput": "1.6 Tbps Switching Capacity",
+            "sla_response_time": "< 2 Hours Critical"
+          }
+        },
+        {
+          "vendor_id": 10,
+          "vendor_name": "National Scientific Supplies",
+          "quoted_amount": 188500.0,
+          "difference_from_budget": -1500.0,
+          "delivery_timeline": "85 Days",
+          "warranty": "3 Years Standard",
+          "technical_compliance": "Fully Compliant with alternate transceiver modules",
+          "technical_score": 90.5,
+          "financial_score": 92.4,
+          "composite_score": 91.5,
+          "rank": 2,
+          "status": "Responsive",
+          "criteria_breakdown": {
+            "oem_authorization": "Yes (Aruba Tier 2)",
+            "fiber_standards": "Compliant",
+            "switch_throughput": "1.2 Tbps Switching Capacity",
+            "sla_response_time": "< 6 Hours"
+          }
+        },
+        {
+          "vendor_id": 8,
+          "vendor_name": "BioMed Systems & Instruments",
+          "quoted_amount": 195000.0,
+          "difference_from_budget": 5000.0,
+          "delivery_timeline": "90 Days",
+          "warranty": "2 Years Limited",
+          "technical_compliance": "Exceeds estimated budget ceiling by 2.6%",
+          "technical_score": 85.0,
+          "financial_score": 88.0,
+          "composite_score": 86.5,
+          "rank": 3,
+          "status": "Budget Overrun",
+          "criteria_breakdown": {
+            "oem_authorization": "Third-Party Reseller",
+            "fiber_standards": "Compliant",
+            "switch_throughput": "960 Gbps Switching Capacity",
+            "sla_response_time": "Next Business Day"
+          }
+        }
+      ]
     }
   ]
 }

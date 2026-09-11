@@ -40,6 +40,9 @@ import '../../features/bidding/presentation/pages/vendor_circular_list_page.dart
 import '../../features/bidding/presentation/pages/vendor_dashboard_page.dart';
 import '../../features/circulars/presentation/pages/initiator_dashboard_page.dart';
 import '../../features/circulars/presentation/pages/initiator_history_page.dart';
+import '../../features/committee/presentation/pages/committee_dashboard_page.dart';
+import '../../features/committee/presentation/pages/committee_evaluation_page.dart';
+import '../../features/committee/presentation/pages/committee_history_page.dart';
 import '../constants/app_enums.dart';
 import 'app_routes.dart';
 import 'auth_guard.dart';
@@ -270,6 +273,23 @@ class AppPages {
       page: () => const FinanceReviewPage(),
       binding: FinanceBinding(),
       middlewares: [AuthGuard()],
+    ),
+
+    // ── Procurement Committee ──
+    GetPage(
+      name: AppRoutes.committeeDashboard,
+      page: () => const CommitteeDashboardPage(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.procurementCommittee, UserRole.admin])],
+    ),
+    GetPage(
+      name: AppRoutes.committeeEvaluation,
+      page: () => const CommitteeEvaluationPage(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.procurementCommittee, UserRole.admin])],
+    ),
+    GetPage(
+      name: AppRoutes.committeeHistory,
+      page: () => const CommitteeHistoryPage(),
+      middlewares: [AuthGuard(), RoleGuard([UserRole.procurementCommittee, UserRole.admin])],
     ),
   ];
 }

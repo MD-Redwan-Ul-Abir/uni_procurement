@@ -113,6 +113,37 @@
         "tax_id": "TIN-5529102931",
         "bin_number": "BIN-001928374"
       }
+    },
+    {
+      "id": 10,
+      "name": "Prof. Dr. Zahirul Islam",
+      "email": "committee@university.edu",
+      "password": "password123",
+      "role": "procurement_committee",
+      "department": "Procurement Evaluation Committee",
+      "status": "ACTIVE",
+      "token": "mock-jwt-committee-token"
+    },
+    {
+      "id": 11,
+      "name": "Dr. Farhana Yasmin",
+      "email": "committee2@university.edu",
+      "password": "password123",
+      "role": "procurement_committee",
+      "department": "Tender Evaluation Board",
+      "status": "ACTIVE",
+      "token": "mock-jwt-committee2-token"
+    },
+    {
+      "id": 12,
+      "name": "Engr. Monirul Haque",
+      "email": "committee3@university.edu",
+      "password": "password123",
+      "role": "procurement_committee",
+      "department": "Technical Verification Wing",
+      "status": "ACTIVE",
+      "token": "mock-jwt-committee3-token"
     }
   ]
 }
+
