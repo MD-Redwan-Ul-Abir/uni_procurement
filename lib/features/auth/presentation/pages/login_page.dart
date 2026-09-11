@@ -150,12 +150,12 @@ class _BlueLoginSidePanel extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'SHANTO-MARIAM UNIVERSITY',
+                                'SHANTO-MARIAM UNIVERSITY OF CREATIVE TECHNOLOGY',
                                 style: TextStyle(
                                   color: AppColors.accentLight.withValues(alpha: 0.95),
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   fontWeight: FontWeight.w700,
-                                  letterSpacing: 0.8,
+                                  letterSpacing: 0.6,
                                 ),
                               ),
                               const SizedBox(height: 2),

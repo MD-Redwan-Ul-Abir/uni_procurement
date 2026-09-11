@@ -139,7 +139,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify left blue branding & login section
-    expect(find.text('SHANTO-MARIAM UNIVERSITY'), findsOneWidget);
+    expect(find.text('SHANTO-MARIAM UNIVERSITY OF CREATIVE TECHNOLOGY'), findsOneWidget);
     expect(find.text('Welcome back'), findsOneWidget);
     expect(find.text('Email Address'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);

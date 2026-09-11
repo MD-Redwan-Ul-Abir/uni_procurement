@@ -236,7 +236,7 @@ class _DesktopSidebar extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        'Shanto-Mariam University',
+                        'Shanto-Mariam University of Creative Technology',
                         style: TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 11,
@@ -497,7 +497,7 @@ class _MobileDrawer extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        'Shanto-Mariam University',
+                        'Shanto-Mariam University of Creative Technology',
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 12,

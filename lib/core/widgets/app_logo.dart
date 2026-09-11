@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
 /// Centralized branded logo for E-Procurement.
-/// Renders the official Shanta-Mariam University emblem.
+/// Renders the official Shanto-Mariam University of Creative Technology emblem.
 class AppLogo extends StatelessWidget {
   final double size;
   final bool showText;
