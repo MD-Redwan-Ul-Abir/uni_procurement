@@ -122,13 +122,23 @@ class BidComplianceService {
     return isAuthorizedStaff;
   }
 
-  /// Label for masked/sealed price when viewing is unauthorized.
+  /// Full description text for masked/sealed price when viewing is unauthorized.
   static String getPriceMaskText({required dynamic deadline, required UserRole? role}) {
     final expired = isDeadlineExpired(deadline);
     if (!expired) {
-      return '🔒 Confidential until closing date';
+      return 'Confidential until closing date';
     } else {
-      return '🔒 Sealed (Authorized Committee Only)';
+      return 'Authorized Committee Only';
+    }
+  }
+
+  /// Compact label for sleek minimalist pills in tables and mobile cards.
+  static String getCompactMaskText({required dynamic deadline, required UserRole? role}) {
+    final expired = isDeadlineExpired(deadline);
+    if (!expired) {
+      return 'Sealed Bid';
+    } else {
+      return 'Committee Only';
     }
   }
 }

@@ -71,78 +71,87 @@ class CircularDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Header Card
-                Card(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: AppColors.border),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: AppColors.border),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.03),
+                        blurRadius: 10,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    circular['title'] as String? ?? '',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall
-                                        ?.copyWith(fontWeight: FontWeight.w700),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    'Department: ${circular['department']} | Category: ${circular['category']}',
-                                    style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
-                                  ),
-                                ],
-                              ),
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  circular['title'] as String? ?? '',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.textPrimary,
+                                        letterSpacing: -0.3,
+                                      ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  'Department: ${circular['department']} • Category: ${circular['category']}',
+                                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 16),
-                            StatusChip.fromCircularStatus(statusEnum),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        const Divider(height: 1),
-                        const SizedBox(height: 20),
-                        Wrap(
-                          spacing: 32,
-                          runSpacing: 16,
-                          children: [
-                            _statBlock(
-                              'Estimated Budget',
-                              currencyFmt.format((circular['estimated_budget'] as num?) ?? 0),
-                              Icons.payments_outlined,
-                              AppColors.primary,
-                            ),
-                            _statBlock(
-                              'Submission Deadline',
-                              circular['submission_deadline'] as String? ?? 'TBD',
-                              Icons.event_outlined,
-                              AppColors.warning,
-                            ),
-                            _statBlock(
-                              'Warranty Required',
-                              '${detail?['warranty_years'] ?? 3} Years On-site',
-                              Icons.verified_outlined,
-                              AppColors.info,
-                            ),
-                            _statBlock(
-                              'Delivery Period',
-                              '${detail?['delivery_period_days'] ?? 45} Days',
-                              Icons.local_shipping_outlined,
-                              AppColors.success,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          const SizedBox(width: 16),
+                          StatusChip.fromCircularStatus(statusEnum),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      const Divider(height: 1, color: AppColors.borderLight),
+                      const SizedBox(height: 20),
+                      Wrap(
+                        spacing: 32,
+                        runSpacing: 16,
+                        children: [
+                          _statBlock(
+                            'Estimated Budget',
+                            currencyFmt.format((circular['estimated_budget'] as num?) ?? 0),
+                            Icons.payments_outlined,
+                            AppColors.primary,
+                          ),
+                          _statBlock(
+                            'Submission Deadline',
+                            circular['submission_deadline'] as String? ?? 'TBD',
+                            Icons.event_outlined,
+                            AppColors.warning,
+                          ),
+                          _statBlock(
+                            'Warranty Required',
+                            '${detail?['warranty_years'] ?? 3} Years On-site',
+                            Icons.verified_outlined,
+                            AppColors.info,
+                          ),
+                          _statBlock(
+                            'Delivery Period',
+                            '${detail?['delivery_period_days'] ?? 45} Days',
+                            Icons.local_shipping_outlined,
+                            AppColors.success,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
 
@@ -154,7 +163,7 @@ class CircularDetailPage extends StatelessWidget {
                   icon: Icons.description_outlined,
                   child: Text(
                     detail?['scope_of_work'] as String? ?? circular['description'] as String? ?? '',
-                    style: TextStyle(fontSize: 14, height: 1.6, color: AppColors.textPrimary),
+                    style: const TextStyle(fontSize: 14, height: 1.6, color: AppColors.textPrimary),
                   ),
                 ),
 
@@ -165,63 +174,80 @@ class CircularDetailPage extends StatelessWidget {
                   _sectionCard(
                     title: 'Bill of Quantities & Specifications',
                     icon: Icons.format_list_numbered_outlined,
-                    child: Table(
-                      border: TableBorder.all(color: AppColors.border, width: 1),
-                      columnWidths: const {
-                        0: FixedColumnWidth(48),
-                        1: FlexColumnWidth(4),
-                        2: FixedColumnWidth(70),
-                        3: FixedColumnWidth(130),
-                      },
-                      children: [
-                        TableRow(
-                          decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.05)),
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('#', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColors.border),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Table(
+                          columnWidths: const {
+                            0: FixedColumnWidth(48),
+                            1: FlexColumnWidth(4),
+                            2: FixedColumnWidth(70),
+                            3: FixedColumnWidth(130),
+                          },
+                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                          children: [
+                            TableRow(
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.04),
+                                border: const Border(bottom: BorderSide(color: AppColors.border)),
+                              ),
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                  child: Text('#', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 11.5, color: AppColors.textSecondary)),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                  child: Text('Item Description', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 11.5, color: AppColors.textSecondary)),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                  child: Text('Qty', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 11.5, color: AppColors.textSecondary)),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                  child: Text('Est. Price', textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 11.5, color: AppColors.textSecondary)),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('Item Description', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12)),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('Qty', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12)),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('Est. Price', textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12)),
-                            ),
+                            ...items.map((it) {
+                              final isEven = items.indexOf(it) % 2 == 0;
+                              return TableRow(
+                                decoration: BoxDecoration(
+                                  color: isEven ? Colors.white : AppColors.scaffoldBg.withValues(alpha: 0.4),
+                                  border: const Border(bottom: BorderSide(color: AppColors.borderLight)),
+                                ),
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                    child: Text('${it['item_no']}', style: const TextStyle(fontSize: 12, color: AppColors.textTertiary)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                    child: Text(it['description'] ?? '', style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                    child: Text('${it['quantity']} ${it['unit']}', textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                    child: Text(
+                                      currencyFmt.format((it['unit_estimated_price'] as num?) ?? 0),
+                                      textAlign: TextAlign.right,
+                                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
                           ],
                         ),
-                        ...items.map((it) {
-                          return TableRow(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Text('${it['item_no']}', style: const TextStyle(fontSize: 12)),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Text(it['description'] ?? '', style: const TextStyle(fontSize: 13)),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Text('${it['quantity']} ${it['unit']}', textAlign: TextAlign.center, style: const TextStyle(fontSize: 12)),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Text(
-                                  currencyFmt.format((it['unit_estimated_price'] as num?) ?? 0),
-                                  textAlign: TextAlign.right,
-                                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                                ),
-                              ),
-                            ],
-                          );
-                        }),
-                      ],
+                      ),
                     ),
                   ),
 
@@ -298,63 +324,78 @@ class CircularDetailPage extends StatelessWidget {
                 const SizedBox(height: 32),
 
                 // Action Bar
-                Card(
-                  elevation: 0,
-                  color: AppColors.cardBg,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: AppColors.border),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: AppColors.border),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.03),
+                        blurRadius: 10,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        if (isInitiatorOrAdmin) ...[
-                          AppButton(
-                            label: 'Track Approval Workflow',
-                            icon: Icons.track_changes_outlined,
-                            isOutlined: true,
-                            onPressed: () => Get.toNamed(
-                                '/approvals/tracker/${circular['id']}'),
-                          ),
-                          const SizedBox(width: 12),
-                          AppButton(
-                            label: 'Comparison Matrix',
-                            icon: Icons.analytics_outlined,
-                            isOutlined: true,
-                            onPressed: () => Get.toNamed(
-                                '/circulars/${circular['id']}/matrix'),
-                          ),
-                        ],
-                        if (isVendor) ...[
-                          AppButton(
-                            label: 'Submit Bid / Quotation',
-                            icon: Icons.gavel_outlined,
-                            onPressed: () => Get.toNamed(
-                                '/circulars/${circular['id']}/bid'),
-                          ),
-                        ],
-                        if (isGuest) ...[
-                          OutlinedButton.icon(
-                            onPressed: () => Get.toNamed(
-                                '/login?redirect=/circulars/${circular['id']}/bid'),
-                            icon: const Icon(Icons.login, size: 16),
-                            label: const Text('Sign In to Bid'),
-                          ),
-                          const SizedBox(width: 12),
-                          ElevatedButton.icon(
-                            onPressed: () => Get.toNamed('/vendor/register'),
-                            icon: const Icon(Icons.person_add, size: 16),
-                            label: const Text('Register as Vendor'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primary,
-                              foregroundColor: Colors.white,
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (isInitiatorOrAdmin) ...[
+                        AppButton(
+                          label: 'Track Approval Workflow',
+                          icon: Icons.track_changes_outlined,
+                          isOutlined: true,
+                          onPressed: () => Get.toNamed(
+                              '/approvals/tracker/${circular['id']}'),
+                        ),
+                        const SizedBox(width: 12),
+                        AppButton(
+                          label: 'Comparison Matrix',
+                          icon: Icons.analytics_outlined,
+                          isOutlined: true,
+                          onPressed: () => Get.toNamed(
+                              '/circulars/${circular['id']}/matrix'),
+                        ),
+                      ],
+                      if (isVendor) ...[
+                        AppButton(
+                          label: 'Submit Bid / Quotation',
+                          icon: Icons.gavel_outlined,
+                          onPressed: () => Get.toNamed(
+                              '/circulars/${circular['id']}/bid'),
+                        ),
+                      ],
+                      if (isGuest) ...[
+                        OutlinedButton.icon(
+                          onPressed: () => Get.toNamed(
+                              '/login?redirect=/circulars/${circular['id']}/bid'),
+                          icon: const Icon(Icons.login, size: 16),
+                          label: const Text('Sign In to Bid'),
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                        ],
+                        ),
+                        const SizedBox(width: 12),
+                        ElevatedButton.icon(
+                          onPressed: () => Get.toNamed('/vendor/register'),
+                          icon: const Icon(Icons.person_add, size: 16),
+                          label: const Text('Register as Vendor'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 0,
+                          ),
+                        ),
                       ],
-                    ),
+                    ],
                   ),
                 ),
               ],
@@ -372,18 +413,24 @@ class CircularDetailPage extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(8),
+            color: color.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(10),
           ),
-          child: Icon(icon, size: 20, color: color),
+          child: Icon(icon, size: 18, color: color),
         ),
         const SizedBox(width: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label, style: const TextStyle(fontSize: 11, color: AppColors.textTertiary)),
+            Text(
+              label,
+              style: const TextStyle(fontSize: 11, color: AppColors.textTertiary, fontWeight: FontWeight.w500),
+            ),
             const SizedBox(height: 2),
-            Text(value, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
+            Text(
+              value,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+            ),
           ],
         ),
       ],
@@ -391,36 +438,48 @@ class CircularDetailPage extends StatelessWidget {
   }
 
   Widget _sectionCard({required String title, required IconData icon, required Widget child}) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: AppColors.border),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(icon, size: 20, color: AppColors.primary),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                    overflow: TextOverflow.ellipsis,
-                  ),
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.08),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Divider(height: 1),
-            const SizedBox(height: 16),
-            child,
-          ],
-        ),
+                child: Icon(icon, size: 18, color: AppColors.primary),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Divider(height: 1, color: AppColors.borderLight),
+          const SizedBox(height: 16),
+          child,
+        ],
       ),
     );
   }
