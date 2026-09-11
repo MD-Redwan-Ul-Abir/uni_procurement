@@ -10,6 +10,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/app_toast.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/status_chip.dart';
+import '../widgets/bid_status_summary_card.dart';
 
 class CircularDetailPage extends StatelessWidget {
   const CircularDetailPage({super.key});
@@ -227,48 +228,71 @@ class CircularDetailPage extends StatelessWidget {
                 const SizedBox(height: 24),
 
                 // Eligibility Criteria & Required Documents
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: _sectionCard(
-                        title: 'Eligibility Requirements',
-                        icon: Icons.checklist_outlined,
-                        child: Column(
-                          children: eligibility.map((e) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.check_circle_outline, size: 16, color: AppColors.success),
-                                const SizedBox(width: 8),
-                                Expanded(child: Text(e, style: const TextStyle(fontSize: 13))),
-                              ],
-                            ),
-                          )).toList(),
-                        ),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    final isNarrow = constraints.maxWidth < 650;
+                    final eligibilityCard = _sectionCard(
+                      title: 'Eligibility Requirements',
+                      icon: Icons.checklist_outlined,
+                      child: Column(
+                        children: eligibility.map((e) => Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.check_circle_outline, size: 16, color: AppColors.success),
+                              const SizedBox(width: 8),
+                              Expanded(child: Text(e, style: const TextStyle(fontSize: 13))),
+                            ],
+                          ),
+                        )).toList(),
                       ),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      child: _sectionCard(
-                        title: 'Required Documents',
-                        icon: Icons.attach_file_outlined,
-                        child: Column(
-                          children: requiredDocs.map((doc) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Row(
-                              children: [
-                                const Icon(Icons.insert_drive_file_outlined, size: 16, color: AppColors.primary),
-                                const SizedBox(width: 8),
-                                Expanded(child: Text(doc, style: const TextStyle(fontSize: 13))),
-                              ],
-                            ),
-                          )).toList(),
-                        ),
+                    );
+
+                    final requiredDocsCard = _sectionCard(
+                      title: 'Required Documents',
+                      icon: Icons.attach_file_outlined,
+                      child: Column(
+                        children: requiredDocs.map((doc) => Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.insert_drive_file_outlined, size: 16, color: AppColors.primary),
+                              const SizedBox(width: 8),
+                              Expanded(child: Text(doc, style: const TextStyle(fontSize: 13))),
+                            ],
+                          ),
+                        )).toList(),
                       ),
-                    ),
-                  ],
+                    );
+
+                    if (isNarrow) {
+                      return Column(
+                        children: [
+                          eligibilityCard,
+                          const SizedBox(height: 20),
+                          requiredDocsCard,
+                        ],
+                      );
+                    }
+
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: eligibilityCard),
+                        const SizedBox(width: 20),
+                        Expanded(child: requiredDocsCard),
+                      ],
+                    );
+                  },
+                ),
+
+                const SizedBox(height: 24),
+
+                // Bid Offer Price Visibility & Live Status Summary
+                BidStatusSummaryCard(
+                  circularId: circular['id'] as String? ?? circularId,
+                  submissionDeadline: circular['submission_deadline'] as String?,
                 ),
 
                 const SizedBox(height: 32),
@@ -382,7 +406,13 @@ class CircularDetailPage extends StatelessWidget {
               children: [
                 Icon(icon, size: 20, color: AppColors.primary),
                 const SizedBox(width: 10),
-                Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 16),

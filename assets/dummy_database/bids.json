@@ -93,6 +93,42 @@
       "documents": [
         {"name": "Library_RFID_Solution_Doc.pdf", "size_kb": 2840}
       ]
+    },
+    {
+      "id": "BID-2026-106",
+      "circular_id": "CIRC-2026-004",
+      "circular_title": "Central Library RFID Circulation & Self-Checkout System",
+      "vendor_id": 8,
+      "vendor_name": "BioMed Systems & Instruments",
+      "quoted_amount": 61200.0,
+      "submission_date": "2026-03-12",
+      "status": "UNDER_REVIEW",
+      "delivery_days": 30,
+      "technical_score": null,
+      "financial_score": null,
+      "total_score": null,
+      "remarks": "Preliminary documentation under review by technical evaluation subcommittee.",
+      "documents": [
+        {"name": "Tech_Compliance_BioMed.pdf", "size_kb": 3100}
+      ]
+    },
+    {
+      "id": "BID-2026-107",
+      "circular_id": "CIRC-2026-004",
+      "circular_title": "Central Library RFID Circulation & Self-Checkout System",
+      "vendor_id": 10,
+      "vendor_name": "National Scientific Supplies",
+      "quoted_amount": 58900.0,
+      "submission_date": "2026-03-15",
+      "status": "WAITING",
+      "delivery_days": 35,
+      "technical_score": null,
+      "financial_score": null,
+      "total_score": null,
+      "remarks": "Bid accepted and waiting for opening session after deadline expiry.",
+      "documents": [
+        {"name": "National_RFID_Quote.pdf", "size_kb": 2450}
+      ]
     }
   ]
 }

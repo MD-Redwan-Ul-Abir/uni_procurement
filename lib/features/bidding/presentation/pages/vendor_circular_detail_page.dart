@@ -7,6 +7,7 @@ import '../../../../core/responsive/adaptive_scaffold.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../circulars/presentation/widgets/bid_status_summary_card.dart';
 
 /// Vendor-specific circular detail — read-only view with Submit Bid CTA.
 /// No edit/delete actions (those are initiator-only).
@@ -56,7 +57,7 @@ class VendorCircularDetailPage extends StatelessWidget {
         final dept = circular['department'] ?? '';
         final description = circular['description'] ?? 'No description available.';
         final budget = circular['estimated_budget'] as num?;
-        final deadline = circular['deadline'] ?? '';
+        final deadline = circular['submission_deadline'] ?? circular['deadline'] ?? '';
         final status = (circular['status'] ?? 'PUBLISHED').toString().toUpperCase();
         final bidsCount = circular['bid_count'] as int? ?? 0;
         final requirements =
@@ -335,7 +336,15 @@ class VendorCircularDetailPage extends StatelessWidget {
                 ),
               ],
 
-              const SizedBox(height: 36),
+              const SizedBox(height: 28),
+
+              // Bid Offer Price Visibility & Live Status Summary
+              BidStatusSummaryCard(
+                circularId: circularId,
+                submissionDeadline: deadline.toString(),
+              ),
+
+              const SizedBox(height: 32),
 
               // CTA: Submit Bid.
               if (canBid)

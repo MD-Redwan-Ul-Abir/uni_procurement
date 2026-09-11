@@ -61,12 +61,12 @@
       "initiator_id": 2,
       "initiator_name": "Dr. Sarah Ahmed",
       "publish_date": "2026-02-20",
-      "submission_deadline": "2026-03-28",
+      "submission_deadline": "2026-10-30",
       "awarded_vendor_id": null,
       "awarded_vendor_name": null,
       "awarded_amount": null,
       "description": "RFID tag encoding stations, security detection gates, self-checkout kiosks, and integrated library management software sync.",
-      "bid_count": 2
+      "bid_count": 3
     },
     {
       "id": "CIRC-2026-005",
