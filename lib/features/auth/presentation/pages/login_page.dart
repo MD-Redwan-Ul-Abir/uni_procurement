@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/constants/app_constants.dart';
-import '../../../../core/constants/app_enums.dart';
 import '../../../../core/responsive/responsive_builder.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -12,7 +11,6 @@ import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_logo.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/empty_state.dart';
-import '../../../../core/widgets/status_chip.dart';
 import '../controllers/auth_controller.dart';
 
 /// Redesigned Login & Public Circulars Portal Page.
@@ -411,19 +409,12 @@ class _WhitePublicCircularsPanelState
 
                 const SizedBox(height: 10),
 
-                // Horizontal Filter Chips
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      _filterChip('ALL', 'All Notices'),
-                      _filterChip('PUBLISHED', 'Open for Bids'),
-                      _filterChip('EVALUATION', 'In Evaluation'),
-                      _filterChip('PENDING', 'Under Review'),
-                      _filterChip('IT', 'IT & Equipment'),
-                      _filterChip('LAB', 'Scientific & Lab'),
-                    ],
-                  ),
+                // Filter Chips: Only "All Notices" and "Open for Bids"
+                Row(
+                  children: [
+                    _filterChip('ALL', 'All Notices'),
+                    _filterChip('OPEN', 'Open for Bids'),
+                  ],
                 ),
               ],
             ),
@@ -451,20 +442,8 @@ class _WhitePublicCircularsPanelState
                     category.contains(query);
 
                 bool matchesFilter = true;
-                if (_selectedFilter == 'PUBLISHED') {
+                if (_selectedFilter == 'OPEN' || _selectedFilter == 'PUBLISHED') {
                   matchesFilter = status == 'PUBLISHED';
-                } else if (_selectedFilter == 'EVALUATION') {
-                  matchesFilter = status == 'EVALUATION';
-                } else if (_selectedFilter == 'PENDING') {
-                  matchesFilter = status.contains('PENDING');
-                } else if (_selectedFilter == 'IT') {
-                  matchesFilter = category.contains('it') ||
-                      category.contains('network') ||
-                      category.contains('software');
-                } else if (_selectedFilter == 'LAB') {
-                  matchesFilter = category.contains('lab') ||
-                      category.contains('instrument') ||
-                      category.contains('scientific');
                 }
 
                 return matchesQuery && matchesFilter;
@@ -506,12 +485,10 @@ class _WhitePublicCircularsPanelState
                       item['category'] as String? ?? 'General Procurement';
                   final budget =
                       (item['estimated_budget'] as num?)?.toDouble() ?? 0.0;
-                  final statusStr = item['status'] as String? ?? 'PUBLISHED';
                   final deadline =
                       item['submission_deadline'] as String? ?? 'TBD';
                   final bidCount = item['bid_count'] as int? ?? 0;
                   final description = item['description'] as String? ?? '';
-                  final statusEnum = CircularStatus.fromString(statusStr);
 
                   return Card(
                     elevation: 0,
@@ -528,7 +505,7 @@ class _WhitePublicCircularsPanelState
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Card Header: ID Pill + Category + Status Chip
+                            // Card Header: ID Pill + Category (No internal status badges)
                             Row(
                               children: [
                                 Container(
@@ -568,8 +545,6 @@ class _WhitePublicCircularsPanelState
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 8),
-                                StatusChip.fromCircularStatus(statusEnum),
                               ],
                             ),
 

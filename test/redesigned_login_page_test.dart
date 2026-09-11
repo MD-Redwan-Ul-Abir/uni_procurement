@@ -215,4 +215,44 @@ void main() {
     expect(find.text('Public Ongoing Procurement Circulars'), findsOneWidget);
     expect(find.text('High-Performance Computing Cluster'), findsOneWidget);
   });
+
+  testWidgets('Only All Notices and Open for Bids filters exist, and no internal status tags on cards',
+      (tester) async {
+    tester.view.physicalSize = const Size(1440, 900);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(
+      GetMaterialApp(
+        initialRoute: AppRoutes.login,
+        getPages: AppPages.pages,
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // Verify only 'All Notices' and 'Open for Bids' exist
+    expect(find.widgetWithText(FilterChip, 'All Notices'), findsOneWidget);
+    expect(find.widgetWithText(FilterChip, 'Open for Bids'), findsOneWidget);
+
+    // Verify the other four removed filter chips are NOT present
+    expect(find.text('In Evaluation'), findsNothing);
+    expect(find.text('Under Review'), findsNothing);
+    expect(find.text('IT & Equipment'), findsNothing);
+    expect(find.text('Scientific & Lab'), findsNothing);
+
+    // Verify internal status chips like "PUBLISHED", "EVALUATION", "AWARDED", "PENDING" are NOT on cards
+    expect(find.text('PUBLISHED'), findsNothing);
+    expect(find.text('EVALUATION'), findsNothing);
+    expect(find.text('AWARDED'), findsNothing);
+    expect(find.text('PENDING'), findsNothing);
+
+    // Tap "Open for Bids"
+    await tester.tap(find.widgetWithText(FilterChip, 'Open for Bids'));
+    await tester.pumpAndSettle();
+
+    // Only the published/open circular is shown
+    expect(find.text('High-Performance Computing Cluster'), findsOneWidget);
+    expect(find.text('Automated Spectral Photometers'), findsNothing);
+  });
 }
