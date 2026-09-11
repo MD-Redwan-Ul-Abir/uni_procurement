@@ -969,11 +969,11 @@ class _CommitteeEvaluationPageState extends State<CommitteeEvaluationPage> {
                     ],
                   ),
                   if (hasVoted) ...[
-                    const SizedBox(height: 8),
-                    Text(
-                      'Recommended: $votedVendor',
-                      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.primary),
-                    ),
+                    // const SizedBox(height: 8),
+                    // Text(
+                    //   'Recommended: $votedVendor',
+                    //   style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.primary),
+                    // ),
                     // Justification comment commented out as committee members cannot view peer comments:
                     // if (justification != null) ...[
                     //   const SizedBox(height: 4),
