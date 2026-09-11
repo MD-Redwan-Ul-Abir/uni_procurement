@@ -974,13 +974,14 @@ class _CommitteeEvaluationPageState extends State<CommitteeEvaluationPage> {
                       'Recommended: $votedVendor',
                       style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.primary),
                     ),
-                    if (justification != null) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        '"$justification"',
-                        style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppColors.textSecondary),
-                      ),
-                    ],
+                    // Justification comment commented out as committee members cannot view peer comments:
+                    // if (justification != null) ...[
+                    //   const SizedBox(height: 4),
+                    //   Text(
+                    //     '"$justification"',
+                    //     style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppColors.textSecondary),
+                    //   ),
+                    // ],
                   ] else ...[
                     const SizedBox(height: 6),
                     const Text(
