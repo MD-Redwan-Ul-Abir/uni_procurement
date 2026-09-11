@@ -148,7 +148,9 @@ void main() {
 
     // Verify right white public ongoing circulars section
     expect(find.text('Public Ongoing Procurement Circulars'), findsOneWidget);
-    expect(find.text('LIVE PUBLIC NOTICES'), findsOneWidget);
+    expect(find.text('LIVE PUBLIC NOTICES'), findsNothing);
+    expect(find.text('No login required to view notices'), findsNothing);
+    expect(find.text('256-Bit SSL Encrypted Procurement System'), findsNothing);
     expect(find.text('High-Performance Computing Cluster'), findsOneWidget);
     expect(find.text('Automated Spectral Photometers'), findsOneWidget);
 
