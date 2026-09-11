@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UniProcure — Frontend System Specification & Capabilities</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  @page {
+    size: A4 portrait;
+    margin: 16mm 16mm 18mm 16mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0F172A;
+    background-color: #FFFFFF;
+    line-height: 1.55;
+    font-size: 11pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cover-header {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 60%, #1A56DB 100%);
+    color: white;
+    padding: 32px 32px 28px 32px;
+    border-radius: 12px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-gold {
+    background: rgba(251, 191, 36, 0.2);
+    color: #FCD34D;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+  }
+
+  .badge-blue {
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border: 1px solid #BFDBFE;
+  }
+
+  .badge-green {
+    background: #ECFDF5;
+    color: #047857;
+    border: 1px solid #A7F3D0;
+  }
+
+  .badge-purple {
+    background: #F5F3FF;
+    color: #6D28D9;
+    border: 1px solid #DDD6FE;
+  }
+
+  .cover-title {
+    font-size: 24pt;
+    font-weight: 800;
+    margin: 12px 0 6px 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .cover-subtitle {
+    font-size: 12.5pt;
+    font-weight: 400;
+    color: #BFDBFE;
+    margin-bottom: 18px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 8.5pt;
+  }
+
+  .meta-item strong {
+    display: block;
+    color: #93C5FD;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  h2 {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #0F172A;
+    border-bottom: 2px solid #E2E8F0;
+    padding-bottom: 6px;
+    margin-top: 28px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    break-after: avoid;
+  }
+
+  h2::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 18px;
+    background: #1A56DB;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+
+  h3 {
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: #1E293B;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    break-after: avoid;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #334155;
+  }
+
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    color: #334155;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    break-inside: avoid;
+  }
+
+  .card-highlight {
+    background: #F8FAFC;
+    border-left: 4px solid #1A56DB;
+  }
+
+  .card-success {
+    background: #F0FDF4;
+    border-left: 4px solid #16A34A;
+    border-color: #DCFCE7;
+  }
+
+  .card-warning {
+    background: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    border-color: #FEF3C7;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 20px 0;
+    font-size: 8.8pt;
+    break-inside: avoid;
+  }
+
+  th {
+    background: #F1F5F9;
+    color: #0F172A;
+    font-weight: 700;
+    text-align: left;
+    padding: 8px 10px;
+    border: 1px solid #CBD5E1;
+  }
+
+  td {
+    padding: 7px 10px;
+    border: 1px solid #E2E8F0;
+    vertical-align: top;
+    color: #334155;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #F8FAFC;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: #F1F5F9;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    color: #0F172A;
+    border: 1px solid #E2E8F0;
+  }
+
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+    background: #0F172A;
+    color: #E2E8F0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 8pt;
+    overflow-x: auto;
+    margin: 10px 0;
+    line-height: 1.45;
+    break-inside: avoid;
+  }
+
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+    break-inside: avoid;
+  }
+
+  .role-card {
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    background: #FAFAFA;
+  }
+
+  .role-card h4 {
+    margin: 0 0 6px 0;
+    font-size: 10.5pt;
+    color: #1E3A8A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .role-card ul {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 8.5pt;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  .footer-note {
+    font-size: 8pt;
+    color: #94A3B8;
+    text-align: center;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 12px;
+    margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER / HEADER -->
+<div class="cover-header">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <span class="badge badge-gold">Enterprise Technical Specification</span>
+    <span style="font-size: 9pt; opacity: 0.9; font-weight: 500;">UniProcure Platform v1.0.0</span>
+  </div>
+  <div class="cover-title">UniProcure Institutional Portal</div>
+  <div class="cover-subtitle">University E-Procurement &amp; Vendor Management System — Frontend Architecture, Capabilities, Security &amp; Strategic Roadmap</div>
+  
+  <div class="meta-grid">
+    <div class="meta-item">
+      <strong>Target Sector</strong>
+      Higher Ed &amp; Public Research
+    </div>
+    <div class="meta-item">
+      <strong>Frontend Tech</strong>
+      Flutter Web 3.x / Dart 3.x
+    </div>
+    <div class="meta-item">
+      <strong>Compliance Level</strong>
+      PPA/PPR Tender Regulations
+    </div>
+    <div class="meta-item">
+      <strong>Document Class</strong>
+      Client Commercial Pitch
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1 -->
+<h2>1. Executive Summary &amp; Commercial Value Proposition</h2>
+<p>
+  <strong>UniProcure</strong> is a high-security, web-native enterprise procurement management portal tailored to address the rigorous statutory governance, multi-tiered fiscal approvals, and competitive bidding workflows of universities and public academic bodies. 
+</p>
+
+<div class="card card-highlight">
+  <strong>Key Institutional Value Proposition for Decision Makers:</strong>
+  <ul>
+    <li><strong>Statutory Procurement Integrity:</strong> Built specifically to comply with public procurement guidelines (e.g. mandatory 3-quote rule, transparent tender publication periods, sealed competitive quotation evaluations).</li>
+    <li><strong>Fraud &amp; Leakage Prevention:</strong> Eliminates manual paper files and informal back-channel approvals by establishing rigid audit trails with immutable officer logs.</li>
+    <li><strong>Objective Bid Evaluation:</strong> Built-in <em>Quality &amp; Cost-Based Selection (QCBS)</em> automated comparison matrix scoring technical compliance alongside financial bids.</li>
+    <li><strong>Zero-Backend Presentation Ready:</strong> Features an integrated client-side reactive simulation engine (<code>DummyDatabaseService</code>) that permits live, fully interactive demonstrations to evaluation committees and board members with zero server prerequisites.</li>
+  </ul>
+</div>
+
+<!-- SECTION 2 -->
+<h2>2. Frontend Software Technologies &amp; Architecture</h2>
+<p>The client application is engineered with an enterprise Flutter Web stack compiled for desktop-class web performance:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Technology</th>
+      <th style="width: 20%;">Package / Tool</th>
+      <th>Role &amp; Architectural Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Core Client Engine</strong></td>
+      <td><code>Flutter Web (Dart 3.12+)</code></td>
+      <td>Hardware-accelerated web rendering delivering responsive, pixel-perfect visual consistency across all modern enterprise desktop and mobile browsers.</td>
+    </tr>
+    <tr>
+      <td><strong>Architecture Pattern</strong></td>
+      <td><code>Clean Architecture + DDD</code></td>
+      <td>Decoupled presentation, domain (use cases, entities), and data layers to isolate business logic from UI widgets and backend communications.</td>
+    </tr>
+    <tr>
+      <td><strong>State &amp; Dependency DI</strong></td>
+      <td><code>GetX (^4.7.2)</code></td>
+      <td>Ultra-responsive micro-state management (<code>Rx</code>, <code>Obx</code>), declarative dependency injection (<code>GetxService</code>), and typed named route navigation.</td>
+    </tr>
+    <tr>
+      <td><strong>Network Engine</strong></td>
+      <td><code>Dio (^5.7.0)</code></td>
+      <td>Robust HTTP client configured with automated token injection, custom interceptors, connection pooling, and timeout guards.</td>
+    </tr>
+    <tr>
+      <td><strong>Fault Resiliency</strong></td>
+      <td><code>RetryInterceptor</code></td>
+      <td>Automatic HTTP retry mechanism with exponential backoff and jitter for unstable campus networks and high-load periods.</td>
+    </tr>
+    <tr>
+      <td><strong>Client Storage</strong></td>
+      <td><code>GetStorage (^2.1.1)</code></td>
+      <td>Synchronous, fast key-value storage abstracted over HTML5 <code>localStorage</code>, eliminating native mobile plugin crashes.</td>
+    </tr>
+    <tr>
+      <td><strong>Error Safety Monads</strong></td>
+      <td><code>Dartz (^0.10.1)</code></td>
+      <td>Functional error handling using <code>Either&lt;Failure, T&gt;</code> monads, eliminating uncaught frontend exceptions.</td>
+    </tr>
+    <tr>
+      <td><strong>Responsive Data Tables</strong></td>
+      <td><code>DataTable2 (^2.5.15)</code></td>
+      <td>High-density data grids with pinned headers, horizontal scroll, column sorting, and custom status cell renderers.</td>
+    </tr>
+    <tr>
+      <td><strong>Visual Analytics</strong></td>
+      <td><code>FL Chart (^1.2.0)</code></td>
+      <td>Hardware-accelerated charting for fiscal budget utilization, departmental spend distribution, and 6-month trend analysis.</td>
+    </tr>
+    <tr>
+      <td><strong>Edge Cloud Deployment</strong></td>
+      <td><code>Vercel Edge / CDN</code></td>
+      <td>Automated CI/CD build scripts (<code>vercel-build.sh</code>) with SPA rewrite rules (<code>vercel.json</code>) for instantaneous global caching.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 3 -->
+<h2>3. UI/UX Design System &amp; Responsive Layout</h2>
+<ul>
+  <li><strong>Institutional Design System:</strong> Professional slate-and-navy aesthetic (Primary Blue <code>#1A56DB</code>, Deep Navy <code>#0F172A</code>, Emerald <code>#16A34A</code>, Amber <code>#F59E0B</code>) custom-styled for institutional software.</li>
+  <li><strong>Three-Tier Adaptive Layout Engine:</strong>
+    <ul>
+      <li><strong>Desktop (&ge; 1200px):</strong> Permanent 260px branded sidebar with live badges, dual-column analytics, and full data grids.</li>
+      <li><strong>Tablet (600px – 1199px):</strong> Collapsible 72px icon rail that expands on hover to 220px, optimizing content viewport.</li>
+      <li><strong>Mobile (&lt; 600px):</strong> Elevation-zero AppBar with slide-out navigation drawer and single-column action cards.</li>
+    </ul>
+  </li>
+  <li><strong>RBAC Dynamic Menus:</strong> The sidebar navigation adapts dynamically via <code>PermissionService</code>, displaying only the modules pertinent to the logged-in officer.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- SECTION 4 -->
+<h2>4. In-Depth Features &amp; Functionalities by Persona</h2>
+<p>UniProcure isolates capabilities across five authenticated roles plus a public access tier:</p>
+
+<div class="role-grid">
+  <!-- Role 1 -->
+  <div class="role-card">
+    <h4>1. Institutional Admin <span class="badge badge-purple">Governance</span></h4>
+    <ul>
+      <li><strong>User Management:</strong> Activate/deactivate faculty accounts, reassign roles, view pending workload count.</li>
+      <li><strong>Vendor Verification Queue:</strong> Review statutory TIN, Trade License, and VAT certificates before clearing suppliers.</li>
+      <li><strong>Workflow Hierarchy Engine:</strong> Configure monetary approval limits (Tier 1 Dept Head, Tier 2 Dean, Tier 3 Registrar).</li>
+      <li><strong>Governance Rules:</strong> Enforce 3 minimum bids, strict budget caps, and auto-escalation timer windows.</li>
+      <li><strong>Executive Analytics:</strong> 8-metric KPI suite, spend by category, 6-month trends, top vendor scorecard.</li>
+    </ul>
+  </div>
+
+  <!-- Role 2 -->
+  <div class="role-card">
+    <h4>2. Requisition Initiator <span class="badge badge-blue">Department</span></h4>
+    <ul>
+      <li><strong>Circular Creation:</strong> Author procurement notices with itemized Bill of Quantities (BOQ) and budget limits.</li>
+      <li><strong>Specification Upload:</strong> Attach technical drawings, terms of reference (TOR), and procurement rules.</li>
+      <li><strong>Tender Lifecycle Cockpit:</strong> Monitor live bidding radar (bid counts, days remaining, submission status).</li>
+      <li><strong>Project History Archive:</strong> Complete audit record of fulfilled purchase orders and delivery certificates.</li>
+    </ul>
+  </div>
+
+  <!-- Role 3 -->
+  <div class="role-card">
+    <h4>3. Multi-Tiered Approvers <span class="badge badge-gold">Sanctioning</span></h4>
+    <ul>
+      <li><strong>Tiered Queue:</strong> Dedicated queues for Department Head, Faculty Dean, and Registrar / VC.</li>
+      <li><strong>Side-by-Side Review:</strong> Inspect comparative vendor quotations, technical scores, and budget deltas.</li>
+      <li><strong>Formal Decision Cockpit:</strong> Approve with digital remarks, reject with mandatory justification, or return for revision.</li>
+      <li><strong>Approval Audit Tracker:</strong> Visual chronological stepper displaying officer timestamps and comments.</li>
+    </ul>
+  </div>
+
+  <!-- Role 4 -->
+  <div class="role-card">
+    <h4>4. Registered Vendors <span class="badge badge-green">Contractors</span></h4>
+    <ul>
+      <li><strong>Digital Onboarding:</strong> Company profile registration with statutory document attachment.</li>
+      <li><strong>Public Tender Explorer:</strong> Browse, filter, and review open institutional tender notices.</li>
+      <li><strong>Online Bid Submission:</strong> Submit quoted price, delivery timeline, compliance certification, and PDF dossiers.</li>
+      <li><strong>'My Bids' Tracker:</strong> Real-time status indicators (Submitted, Evaluated, Awarded, Disqualified).</li>
+      <li><strong>Work Orders &amp; Invoicing:</strong> Milestone delivery reporting and commercial tax invoice uploads.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card card-success">
+  <h4>5. Finance &amp; Treasury Officers (Controllership)</h4>
+  <ul style="margin-bottom: 0;">
+    <li><strong>Fiscal Budget Monitoring:</strong> Real-time monitoring of Annual Budget ($3.5M baseline), Committed Liabilities ($2.18M), and Disbursed Funds ($1.42M).</li>
+    <li><strong>3-Way Matching Verification:</strong> Digital cross-verification between Awarded Work Order, Lab Goods Receipt Note, and Vendor Commercial Invoice.</li>
+    <li><strong>Direct EFT Disbursal Authorization:</strong> Settle verified claims, generate Electronic Funds Transfer (EFT) batch references, or return invoices for clarification.</li>
+    <li><strong>Departmental Spend Allocation:</strong> Track fund absorption across Science, Engineering, Business, and Arts faculties.</li>
+  </ul>
+</div>
+
+<div class="card card-highlight">
+  <h4>Signature Capability: Automated QCBS Bid Comparison Matrix</h4>
+  <p style="margin-bottom: 6px;">
+    UniProcure features an institutional evaluation matrix implementing <strong>Quality &amp; Cost-Based Selection (QCBS)</strong>:
+  </p>
+  <ul style="margin-bottom: 0;">
+    <li><strong>Composite Score Calculation:</strong> Combines technical evaluation scores (e.g. 70% weight) with commercial quotation competitiveness (e.g. 30% weight).</li>
+    <li><strong>Budget Delta Analysis:</strong> Instantly displays quotation variance relative to the approved ceiling (under-budget vs. budget overrun).</li>
+    <li><strong>Automated Award Recommendation:</strong> Formulates institutional committee recommendation for immediate executive sanctioning.</li>
+  </ul>
+</div>
+
+<!-- SECTION 5 -->
+<h2>5. Production Readiness &amp; Web Security Architecture for Flutter Web</h2>
+<p>
+  Deploying Flutter Web in enterprise and governmental settings mandates strict client-side hardening and edge infrastructure configurations:
+</p>
+
+<div class="card card-warning">
+  <strong>Critical Production Requirements for Web Publishing:</strong>
+  <ul>
+    <li><strong>Rendering Engine Selection:</strong> Build using Flutter's <code>CanvasKit</code> engine (<code>flutter build web --release --no-wasm-dry-run</code>) to guarantee pixel-identical charts, typography, and complex data grids across all browsers.</li>
+    <li><strong>Content Security Policy (CSP):</strong> Configure edge servers with strict CSP headers permitting WebAssembly execution (<code>'wasm-unsafe-eval'</code>) while blocking unauthorized script origins.</li>
+    <li><strong>Cache Eviction &amp; Service Worker:</strong> Utilize the cache-clearing bootstrap in <code>web/index.html</code> to ensure users immediately receive updated bundles upon deployment without manual hard-refreshing.</li>
+    <li><strong>Session Security &amp; Token Shielding:</strong> Employ in-memory access token storage backed by HTTP-Only, Secure, SameSite=Strict cookies for token refresh cycles to neutralize XSS token harvesting.</li>
+    <li><strong>Client Route Guards:</strong> <code>AuthGuard</code> and <code>PermissionService</code> validate permissions before each route transition, preventing unauthorized direct URL navigation.</li>
+  </ul>
+</div>
+
+<p><strong>Recommended Production Content Security Policy (CSP) Header:</strong></p>
+<pre>Content-Security-Policy: default-src 'self'; 
+  script-src 'self' 'wasm-unsafe-eval' https://fonts.googleapis.com; 
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+  font-src 'self' https://fonts.gstatic.com; 
+  img-src 'self' data: blob: https:; 
+  connect-src 'self' https://api.uniprocure.edu; 
+  object-src 'none'; frame-ancestors 'none';</pre>
+
+<div class="page-break"></div>
+
+<!-- SECTION 6 -->
+<h2>6. Strategic Product Roadmap (Future Phases to Close the Deal)</h2>
+<p>
+  The following realistic, high-impact features represent the immediate product roadmap to present to university leadership and expansion partners:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 20%;">Phase / Target</th>
+      <th style="width: 25%;">Feature Module</th>
+      <th>Commercial Impact &amp; Operational Capability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Phase 1: Legal Compliance</strong></td>
+      <td><strong>PKI Digital Signatures</strong></td>
+      <td>Integrate cryptographic X.509 digital certificates and enterprise e-signatures (DocuSign / National PKI) to legally seal approved sanction orders and tender notices.</td>
+    </tr>
+    <tr>
+      <td><strong>Phase 2: Live Collaboration</strong></td>
+      <td><strong>Real-Time WebSockets</strong></td>
+      <td>Instant notifications for tender closing countdowns, outbid supplier alerts, and executive approval pings without page refresh.</td>
+    </tr>
+    <tr>
+      <td><strong>Phase 3: Audit Automation</strong></td>
+      <td><strong>In-Browser PDF Generator</strong></td>
+      <td>Client-side compilation and download of formatted official Purchase Orders, Comparative Evaluation Statements, and Treasury Ledgers.</td>
+    </tr>
+    <tr>
+      <td><strong>Phase 4: Fiscal Governance</strong></td>
+      <td><strong>Automated Tax &amp; VAT Calculator</strong></td>
+      <td>Dynamic calculation of Advanced Income Tax (AIT) and Value Added Tax (VAT) deductions at source during invoice audit prior to bank clearance.</td>
+    </tr>
+    <tr>
+      <td><strong>Phase 5: Risk Mitigation</strong></td>
+      <td><strong>Vendor Performance Scorecard</strong></td>
+      <td>Automated vendor rating factoring delivery delays and SLA penalties, dynamically weighted in future tender evaluations.</td>
+    </tr>
+    <tr>
+      <td><strong>Phase 6: Scalability</strong></td>
+      <td><strong>Multi-Campus Federation</strong></td>
+      <td>Multi-tenant organization switcher supporting affiliated medical colleges, specialized research centers, and satellite campuses under one portal.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 7 -->
+<h2>7. Summary of Deliverables &amp; Demonstration Verification</h2>
+<div class="card card-highlight">
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; text-align: center;">
+    <div>
+      <div style="font-size: 22pt; font-weight: 800; color: #1A56DB;">8</div>
+      <div style="font-size: 9pt; color: #64748B; font-weight: 600;">Functional Modules</div>
+    </div>
+    <div>
+      <div style="font-size: 22pt; font-weight: 800; color: #16A34A;">25+</div>
+      <div style="font-size: 9pt; color: #64748B; font-weight: 600;">Screen Views &amp; Pages</div>
+    </div>
+    <div>
+      <div style="font-size: 22pt; font-weight: 800; color: #7C3AED;">100%</div>
+      <div style="font-size: 9pt; color: #64748B; font-weight: 600;">Responsive &amp; Web-Ready</div>
+    </div>
+  </div>
+</div>
+
+<p>
+  <strong>Build Command:</strong>
+</p>
+<pre>flutter build web --release --no-wasm-dry-run</pre>
+
+<div class="footer-note">
+  UniProcure &copy; 2026. Confidential Institutional Architecture &amp; System Capabilities Report. All Rights Reserved.
+</div>
+
+</body>
+</html>

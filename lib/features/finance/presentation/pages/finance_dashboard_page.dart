@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/responsive/adaptive_scaffold.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/services/dummy_database_service.dart';
@@ -16,7 +17,7 @@ class FinanceDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final db = Get.find<DummyDatabaseService>();
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
 
     return AdaptiveScaffold(
       title: 'Finance & Treasury',
@@ -571,15 +572,15 @@ class FinanceDashboardPage extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _submetricTile('CapEx Lab Equipment', '\$1,575,000', '45.0% share', const Color(0xFF0D9488)),
+                child: _submetricTile('CapEx Lab Equipment', '${AppConstants.currencySymbol}1,575,000', '45.0% share', const Color(0xFF0D9488)),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: _submetricTile('IT Infrastructure', '\$1,050,000', '30.0% share', AppColors.primary),
+                child: _submetricTile('IT Infrastructure', '${AppConstants.currencySymbol}1,050,000', '30.0% share', AppColors.primary),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: _submetricTile('Research Grants', '\$875,000', '25.0% share', const Color(0xFF7C3AED)),
+                child: _submetricTile('Research Grants', '${AppConstants.currencySymbol}875,000', '25.0% share', const Color(0xFF7C3AED)),
               ),
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/responsive/adaptive_scaffold.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -40,7 +41,7 @@ class _FinanceInvoicesPageState extends State<FinanceInvoicesPage> {
   @override
   Widget build(BuildContext context) {
     final db = Get.find<DummyDatabaseService>();
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 2);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 2);
 
     return AdaptiveScaffold(
       title: 'Invoices & Claims Queue',
@@ -206,7 +207,7 @@ class _FinanceInvoicesPageState extends State<FinanceInvoicesPage> {
     required int paidCount,
     required double totalPayableSum,
   }) {
-    final currencyFmt = NumberFormat.compactCurrency(symbol: '\$');
+    final currencyFmt = NumberFormat.compactCurrency(symbol: AppConstants.currencySymbol);
     final metrics = [
       _MetricTileData(
         label: 'Total Invoices Logged',

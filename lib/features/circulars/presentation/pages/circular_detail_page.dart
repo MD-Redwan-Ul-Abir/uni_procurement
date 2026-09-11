@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/constants/app_enums.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/services/permission_service.dart';
@@ -34,7 +35,7 @@ class CircularDetailPage extends StatelessWidget {
             ? db.circularDetails.values.first as Map<String, dynamic>
             : null);
 
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
     final statusStr = circular['status'] as String? ?? 'DRAFT';
     final statusEnum = CircularStatus.fromString(statusStr);
     final isVendor = permission.currentRole == UserRole.vendor;

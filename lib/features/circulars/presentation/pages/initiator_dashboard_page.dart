@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/constants/app_enums.dart';
 import '../../../../core/responsive/adaptive_scaffold.dart';
 import '../../../../core/responsive/responsive_builder.dart';
@@ -29,7 +30,7 @@ class InitiatorDashboardPage extends StatelessWidget {
         final db = Get.find<DummyDatabaseService>();
         final circulars = db.circulars;
         final currencyFmt =
-            NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+            NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
 
         // Compute stats.
         final total = circulars.length;

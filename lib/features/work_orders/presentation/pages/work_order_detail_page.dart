@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/constants/app_enums.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -16,7 +17,7 @@ class WorkOrderDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderId = Get.parameters['id'] ?? 'WO-2026-001';
     final db = Get.find<DummyDatabaseService>();
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
 
     final wo = db.workOrders.firstWhereOrNull((w) => w['id'] == orderId) ??
         (db.workOrders.isNotEmpty ? db.workOrders.first : null);

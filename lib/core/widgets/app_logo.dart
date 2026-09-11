@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
-/// Centralized branded logo for UniProcure.
-/// Renders the custom university e-procurement shield/pillar emblem.
+/// Centralized branded logo for E-Procurement.
+/// Renders the official Shanta-Mariam University emblem.
 class AppLogo extends StatelessWidget {
   final double size;
   final bool showText;
+  final String? title;
   final TextStyle? textStyle;
   final Color? textColor;
 
@@ -13,6 +14,7 @@ class AppLogo extends StatelessWidget {
     super.key,
     this.size = 32,
     this.showText = false,
+    this.title,
     this.textStyle,
     this.textColor,
   });
@@ -41,12 +43,20 @@ class AppLogo extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(size * 0.16),
         child: Image.asset(
-          'assets/images/uniprocure_icon.png',
+          'assets/images/shanta.png',
           fit: BoxFit.contain,
-          errorBuilder: (_, _, _) => Icon(
-            Icons.account_balance,
-            color: AppColors.primary,
-            size: size * 0.7,
+          errorBuilder: (_, _, _) => Image.asset(
+            'assets/images/uniprocure_icon.png',
+            fit: BoxFit.contain,
+            errorBuilder: (_, _, _) => Image.asset(
+              'assets/images/santa.png',
+              fit: BoxFit.contain,
+              errorBuilder: (_, _, _) => Icon(
+                Icons.school,
+                color: AppColors.primary,
+                size: size * 0.7,
+              ),
+            ),
           ),
         ),
       ),
@@ -61,13 +71,13 @@ class AppLogo extends StatelessWidget {
         iconWidget,
         SizedBox(width: size * 0.35),
         Text(
-          'UniProcure',
+          title ?? 'E-Procurement',
           style: textStyle ??
               TextStyle(
                 color: textColor ?? AppColors.primary,
                 fontSize: size * 0.62,
                 fontWeight: FontWeight.w700,
-                letterSpacing: -0.5,
+                letterSpacing: -0.4,
               ),
         ),
       ],

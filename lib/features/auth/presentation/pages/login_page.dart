@@ -130,17 +130,21 @@ class _MobileLoginLayout extends StatelessWidget {
             const AppLogo(size: 64),
             const SizedBox(height: 16),
             Text(
-              'UniProcure',
+              'E-Procurement',
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     color: AppColors.primary,
                     fontWeight: FontWeight.w700,
+                    fontSize: 26,
                   ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             Text(
-              'University E-Procurement Portal',
+              'Shanto-Mariam University',
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondary,
+                    fontWeight: FontWeight.w500,
                   ),
             ),
             const SizedBox(height: 48),
@@ -183,15 +187,31 @@ class _BrandingPanel extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AppLogo(size: compact ? 38 : 48),
+                  AppLogo(size: compact ? 42 : 54),
                   const SizedBox(width: 14),
-                  Text(
-                    'UniProcure',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: compact ? 24 : 32,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: -0.5,
+                  Flexible(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'E-Procurement',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: compact ? 22 : 28,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: -0.5,
+                          ),
+                        ),
+                        Text(
+                          'Shanto-Mariam University',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: compact ? 12 : 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

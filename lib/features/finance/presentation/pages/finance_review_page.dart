@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/app_toast.dart';
@@ -13,7 +14,7 @@ class FinanceReviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final db = Get.find<DummyDatabaseService>();
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 2);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 2);
     final invoiceId = Get.parameters['id'] ?? 'INV-2026-301';
 
     return Scaffold(
@@ -308,7 +309,7 @@ class FinanceReviewPage extends StatelessWidget {
                             const SizedBox(height: 8),
                             _calcRow('Applicable VAT / AIT (5.0% Standard Withholding)', currencyFmt.format(taxAmount)),
                             const SizedBox(height: 8),
-                            _calcRow('University Procurement Processing Fee', '\$0.00', isMuted: true),
+                            _calcRow('University Procurement Processing Fee', '${AppConstants.currencySymbol}0.00', isMuted: true),
                             const Divider(height: 24),
                             _calcRow(
                               'Total Gross Claim Amount Payable',

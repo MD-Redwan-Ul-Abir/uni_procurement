@@ -2,8 +2,8 @@
 class AppConstants {
   AppConstants._();
 
-  static const String appName = 'Uni Procurement';
-  static const String appTitle = 'University E-Procurement Portal';
+  static const String appName = 'E-Procurement';
+  static const String appTitle = 'E-Procurement - Shanto-Mariam University';
 
   /// Maximum file upload size in bytes (5 MB).
   static const int maxUploadSizeBytes = 5 * 1024 * 1024;

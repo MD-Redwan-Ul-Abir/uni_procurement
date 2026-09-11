@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/responsive/adaptive_scaffold.dart';
 import '../../../../core/responsive/responsive_builder.dart';
 import '../../../../core/services/dummy_database_service.dart';
@@ -29,7 +30,7 @@ class VendorDashboardPage extends StatelessWidget {
         final userEmail = (currentUser?['email'] ?? '').toString().toLowerCase();
 
         final currencyFmt =
-            NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+            NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
 
         // Filter bids strictly to this vendor's activity
         final myBids = db.bids.where((b) {

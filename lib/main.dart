@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:toastification/toastification.dart';
 
+import 'core/constants/app_constants.dart';
 import 'core/constants/app_enums.dart';
 import 'core/network/auth_interceptor.dart';
 import 'core/routes/app_pages.dart';
@@ -56,7 +57,7 @@ class UniProcurementApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ToastificationWrapper(
       child: GetMaterialApp(
-        title: 'University E-Procurement Portal',
+        title: AppConstants.appTitle,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
         initialRoute: AppRoutes.login,

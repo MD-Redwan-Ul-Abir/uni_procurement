@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/services/permission_service.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -49,6 +50,7 @@ class _ApprovalReviewPageState extends State<ApprovalReviewPage> {
       AppToast.success(
         title: 'Sanction Approved',
         description: 'Request $approvalId has been approved and forwarded.',
+        context: context,
       );
     } else {
       db.rejectRequest(
@@ -60,6 +62,7 @@ class _ApprovalReviewPageState extends State<ApprovalReviewPage> {
       AppToast.error(
         title: 'Request Rejected',
         description: 'Request $approvalId has been rejected and logged in history.',
+        context: context,
       );
     }
 
@@ -71,7 +74,7 @@ class _ApprovalReviewPageState extends State<ApprovalReviewPage> {
   Widget build(BuildContext context) {
     final approvalId = Get.parameters['id'] ?? 'APP-2026-001';
     final db = Get.find<DummyDatabaseService>();
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
 
     final req = db.pendingApprovals.firstWhereOrNull((a) => a['id'] == approvalId) ??
         (db.pendingApprovals.isNotEmpty ? db.pendingApprovals.first : null);

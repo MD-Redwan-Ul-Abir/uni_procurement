@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/app_toast.dart';
@@ -113,7 +114,7 @@ class _InvoiceUploadPageState extends State<InvoiceUploadPage> {
   @override
   Widget build(BuildContext context) {
     final db = Get.find<DummyDatabaseService>();
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
     final amount = double.tryParse(_amountController.text.trim()) ?? 0.0;
     final tax = amount * 0.05;
     final total = amount + tax;
@@ -205,7 +206,7 @@ class _InvoiceUploadPageState extends State<InvoiceUploadPage> {
 
                       AppTextField(
                         controller: _amountController,
-                        label: 'Taxable Goods / Services Amount (USD)',
+                        label: 'Taxable Goods / Services Amount (${AppConstants.currencySymbol})',
                         hint: '82500',
                         keyboardType: TextInputType.number,
                         validator: (v) => Validators.required(v, 'Amount'),

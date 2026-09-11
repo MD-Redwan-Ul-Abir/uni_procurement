@@ -1,11 +1,11 @@
 {
-    "name": "UniProcure - University E-Procurement Portal",
-    "short_name": "UniProcure",
+    "name": "E-Procurement - Shanto-Mariam University",
+    "short_name": "E-Procurement",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#1E40AF",
     "theme_color": "#1E40AF",
-    "description": "Institutional University E-Procurement & Tender Management Portal",
+    "description": "E-Procurement - Shanto-Mariam University Tender & Procurement Portal",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

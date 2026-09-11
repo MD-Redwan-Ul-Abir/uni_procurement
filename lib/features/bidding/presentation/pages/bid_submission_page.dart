@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/app_toast.dart';
@@ -161,7 +162,7 @@ class _BidSubmissionPageState extends State<BidSubmissionPage> {
                           Expanded(
                             child: AppTextField(
                               controller: _priceController,
-                              label: 'Total Quoted Amount (USD)',
+                              label: 'Total Quoted Amount (${AppConstants.currencySymbol})',
                               hint: 'e.g. 59800',
                               keyboardType: TextInputType.number,
                               validator: (v) => Validators.required(v, 'Quoted amount'),

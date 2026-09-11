@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/responsive/adaptive_scaffold.dart';
 import '../../../../core/services/dummy_database_service.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -16,7 +17,7 @@ class VendorCircularDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final circularId = Get.parameters['id'] ?? '';
     final db = Get.find<DummyDatabaseService>();
-    final currencyFmt = NumberFormat.currency(symbol: '\$', decimalDigits: 0);
+    final currencyFmt = NumberFormat.currency(symbol: AppConstants.currencySymbol, decimalDigits: 0);
 
     return AdaptiveScaffold(
       title: 'Circular Details',
